@@ -1,22 +1,25 @@
 <template>
   <div>
-    <Logo />
-    <leftnavbar />
-    <nuxt />
+    <logo />
+    <modalProject v-if="$store.state.showModal"/>
+    <navLeft />
+    <nuxt/>
     <profileBtn />
   </div>
 </template>
 
 <script>
-  import leftnavbar from '~/components/_shared/nav.vue'
+  import navLeft from '~/components/_shared/navLeft.vue'
   import profileBtn from '~/components/_shared/profileBtn.vue'
-  import Logo from '~/components/_shared/logo.vue'
+  import logo from '~/components/_shared/logo.vue'
+  import modalProject from '~/components/_shared/modalProject/modalProject.vue'
 
 
   export default {
     components: {
-      leftnavbar,profileBtn,Logo
-    }
+      navLeft,profileBtn,logo,modalProject
+    },
+
   }
 </script>
 

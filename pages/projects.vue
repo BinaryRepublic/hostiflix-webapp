@@ -1,7 +1,5 @@
 <template>
   <section class="container">
-    <!--MODAL-->
-    <modalProject v-if="showModal" @close="showModal = false"/>
     <!--PROJECTS-->
     <div class="title">
       <h2>My projects</h2>
@@ -9,7 +7,7 @@
     </div>
     <div class="projectCards">
       <projectCard/>
-      <createProjectCard v-on:click.native="showModal = true"></createProjectCard>
+      <createProjectCard  @click.native="$store.commit('showModal')"></createProjectCard>
     </div>
   </section>
 </template>
@@ -18,17 +16,12 @@
 <script>
   import createProjectCard from '~/components/projects/createProjectCard.vue'
   import projectCard from '~/components/projects/projectCard.vue'
-  import modalProject from '~/components/_shared/modalProject/modalProject.vue'
 
   export default {
     components: {
-      createProjectCard,projectCard,modalProject
+      createProjectCard,projectCard
     },
-    data() {
-      return {
-        showModal:true
-      }
-    },
+
   }
 </script>
 

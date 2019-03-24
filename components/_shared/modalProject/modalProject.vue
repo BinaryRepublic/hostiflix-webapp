@@ -1,6 +1,6 @@
 <template>
   <div class="modalWrap">
-    <closeIcon @click.native="$emit('close')"/>
+    <closeIcon @click.native="$store.commit('hideModal')"/>
     <div class="modal">
       <div class="title">
         <h2 class="mainBlue">Welcome to Hostiflix</h2>

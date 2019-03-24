@@ -1,26 +1,18 @@
 <template>
   <div class="leftNavBar">
-    <Logo />
     <div class="projectsList mainBlue">
       <h4>My Projects</h4>
       <ul>
         <li>
-          <a href="#">portfolio-webapp</a>
+          <span>portfolio-webapp</span>
         </li>
         <li>
-          <a href="#">+Create a new project</a>
+          <span @click="$store.commit('showModal')">+Create a new project</span>
         </li>
       </ul>
     </div>
   </div>
 </template>
-
-
-<script>
-
-
-</script>
-
 
 <style lang="scss">
 
