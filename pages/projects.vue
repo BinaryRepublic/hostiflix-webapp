@@ -1,7 +1,7 @@
 <template>
   <section class="container">
     <!--MODAL-->
-
+    <modalProject v-if="showModal" @close="showModal = false"/>
     <!--PROJECTS-->
     <div class="title">
       <h2>My projects</h2>
