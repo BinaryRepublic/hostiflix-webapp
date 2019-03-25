@@ -1,12 +1,12 @@
 export const state = () => ({
-  showModal: false
+  showCreateProject: false
 })
 
 export const mutations = {
-  showModal(state) {
-    state.showModal = true
+  showCreateProject(state) {
+    state.showCreateProject = true
   },
-  hideModal(state) {
-    state.showModal = false
+  hideCreateProject(state) {
+    state.showCreateProject = false
   }
 }

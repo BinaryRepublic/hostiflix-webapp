@@ -1,11 +1,28 @@
 <template>
   <div class="modalWrap">
-    <closeIcon @click.native="$store.commit('hideModal')"/>
+    <closeIcon @click.native="$store.commit('hideCreateProject')"/>
     <div class="modal">
       <div class="title">
         <h2 class="mainBlue">Welcome to Hostiflix</h2>
         <h4>Let’s start right off with your first project.</h4>
-        <selectType />
+        <div class="selectType">
+          <createProjectCard
+            link="/createGit"
+            imgSrc="/img/layout/icon-repos.png"
+            headline="Create new project from GitHub repos"
+            subHeadline="Select your existing Github repository to launch your app."
+            button="Create project with gitHub"
+          />
+          <createProjectCard
+            link="/createGit"
+            imgSrc="/img/layout/icon-upload.png"
+            headline="Drag and drop your site folder here"
+            subHeadline="Launch your app by uploading your local files."
+            button="Select files from your computer"
+            :comingSoon="true"
+          />
+        </div>
+
       </div>
     </div>
   </div>
@@ -13,12 +30,12 @@
 
 <script>
 
-  import selectType from '~/components/_shared/modalProject/selectType.vue'
+  import createProjectCard from '~/components/_shared/createProject/createProjectCard.vue'
   import closeIcon from '~/components/_shared/closeIcon.vue'
 
   export default {
     components: {
-      selectType, closeIcon
+      createProjectCard, closeIcon
     }
   }
 

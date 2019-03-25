@@ -1,7 +1,7 @@
 <template>
   <div>
     <logo />
-    <modalProject v-if="$store.state.showModal"/>
+    <modalProject v-if="$store.state.showCreateProject"/>
     <navLeft />
     <nuxt/>
     <profileBtn />
@@ -12,7 +12,7 @@
   import navLeft from '~/components/_shared/navLeft.vue'
   import profileBtn from '~/components/_shared/profileBtn.vue'
   import logo from '~/components/_shared/logo.vue'
-  import modalProject from '~/components/_shared/modalProject/modalProject.vue'
+  import modalProject from '~/components/_shared/createProject/createProject.vue'
 
 
   export default {

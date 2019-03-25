@@ -7,7 +7,7 @@
     </div>
     <div class="projectCards">
       <projectCard/>
-      <createProjectCard  @click.native="$store.commit('showModal')"></createProjectCard>
+      <createProjectCard  @click.native="$store.commit('showCreateProject')"></createProjectCard>
     </div>
   </section>
 </template>

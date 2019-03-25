@@ -13,16 +13,11 @@
 <script>
   import createProjectCard from '~/components/projects/createProjectCard.vue'
   import projectCard from '~/components/projects/projectCard.vue'
-  import modalProject from '~/components/_shared/modalProject/modalProject.vue'
+  import modalProject from '~/components/_shared/createProject/createProject.vue'
 
   export default {
     components: {
       createProjectCard,projectCard,modalProject
-    },
-    data() {
-      return {
-        showModal:true
-      }
     },
   }
 </script>
