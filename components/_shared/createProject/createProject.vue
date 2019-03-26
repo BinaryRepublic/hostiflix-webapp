@@ -1,6 +1,6 @@
 <template>
   <div class="modalWrap">
-    <closeIcon @click.native="$store.commit('hideCreateProject')"/>
+    <buttonClose @click.native="$store.commit('hideCreateProject')"/>
     <div class="modal">
       <div class="title">
         <h2 class="mainBlue">Welcome to Hostiflix</h2>
@@ -31,11 +31,11 @@
 <script>
 
   import createProjectCard from '~/components/_shared/createProject/createProjectCard.vue'
-  import closeIcon from '~/components/_shared/closeIcon.vue'
+  import buttonClose from '~/components/_shared/buttons/buttonClose.vue'
 
   export default {
     components: {
-      createProjectCard, closeIcon
+      createProjectCard, buttonClose
     }
   }
 
@@ -49,7 +49,7 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background: #f6f8ff;
+    background: $light-blue-bg-color;
     z-index: 99;
     position: fixed;
   }
@@ -60,7 +60,7 @@
     width: 100%;
     height: 100%;
     z-index: 100;
-    background: #f6f8ff;
+    background: $light-blue-bg-color;
 
   }
   .modal {

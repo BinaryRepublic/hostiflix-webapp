@@ -12,9 +12,9 @@
     width: 60px;
     height: 60px;
     background-color: #FFFFFF;
-    background-image: url("../../assets/img/layout/close.png");
+    background-image: url("../../../static/img/layout/arrow-left.png");
     background-repeat: no-repeat;
-    background-size: 17px;
+    background-size: 11px;
     background-position: center;
     box-shadow: 0px 2px 10px rgba(71, 105, 255, 0.101591);
     border-radius: 50%;

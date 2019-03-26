@@ -1,9 +1,12 @@
 <template>
   <section class="container">
-    <!--PROJECTS-->
-    <div class="title">
-      <h2>Git project</h2>
-      <h5>These are all of your projects running on hostiflix.</h5>
+    <!--CREATE PROJECTS-->
+    <div class="createContainer">
+      <div>
+        <h2>Create a new project</h2>
+        <h5>These are all of your projects running on hostiflix.</h5>
+      </div>
+
     </div>
 
   </section>
@@ -11,14 +14,13 @@
 
 
 <script>
-  import createProjectCard from '~/components/projects/createProjectCard.vue'
-  import projectCard from '~/components/projects/projectCard.vue'
-  import modalProject from '~/components/_shared/createProject/createProject.vue'
+
 
   export default {
     components: {
-      createProjectCard,projectCard,modalProject
+
     },
+    layout: 'noNavLeft',
   }
 </script>
 
@@ -26,6 +28,10 @@
   .container {
     margin: 140px 20px 0 250px;
     padding: 0 0 0 50px;
+  }
+  .createContainer {
+    background: #fff;
+    border: $blue-border;
   }
   .title {
     margin-bottom: 40px;
