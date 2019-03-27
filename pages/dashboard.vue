@@ -20,12 +20,13 @@
   export default {
     components: {
       createProjectCard,projectCard
-    },
+    }
+
 
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .container {
     margin: 140px 20px 0 250px;
     padding: 0 0 0 50px;

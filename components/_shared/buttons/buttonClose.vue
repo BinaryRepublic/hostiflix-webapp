@@ -3,7 +3,7 @@
   </a>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
   .closeIcon {
     position: fixed;

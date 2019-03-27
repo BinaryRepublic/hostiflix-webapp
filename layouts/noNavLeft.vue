@@ -66,6 +66,9 @@
   a {
     text-decoration: none;
   }
+  .mainBlue {
+    color: $blue-color;
+  }
 
 
 </style>

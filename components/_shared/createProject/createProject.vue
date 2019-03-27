@@ -3,7 +3,7 @@
     <buttonClose @click.native="$store.commit('hideCreateProject')"/>
     <div class="modal">
       <div class="title">
-        <h2 class="mainBlue">Welcome to Hostiflix</h2>
+        <h2>Welcome to Hostiflix</h2>
         <h4>Let’s start right off with your first project.</h4>
         <div class="selectType">
           <createProjectCard
@@ -41,7 +41,7 @@
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
   /*MODAL*/
   .modalBG {
@@ -76,6 +76,9 @@
   }
   .modal .title > h4 {
     margin-bottom: 40px;
+  }
+  .title h2 {
+    color: $blue-color;
   }
 
 

@@ -1,9 +1,9 @@
 <template>
-  <a class="closeIcon">
-  </a>
+  <nuxt-link  @click.native="$store.commit('showCreateProject')" to="/dashboard" class="closeIcon">
+  </nuxt-link>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
   .closeIcon {
     position: fixed;
