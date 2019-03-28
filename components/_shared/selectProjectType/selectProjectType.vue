@@ -1,20 +1,20 @@
 <template>
   <div class="modalWrap">
-    <buttonClose @click.native="$store.commit('hideCreateProject')"/>
+    <round-button type="CLOSE" :is-fixed="true" @click.native="$store.commit('hideSelectProjectType')"/>
     <div class="modal">
       <div class="title">
         <h2>Welcome to Hostiflix</h2>
         <h4>Let’s start right off with your first project.</h4>
         <div class="selectType">
-          <createProjectCard
-            link="/createGit"
-            imgSrc="/img/layout/icon-repos.png"
-            headline="Create new project from GitHub repos"
-            subHeadline="Select your existing Github repository to launch your app."
-            button="Create project with gitHub"
-          />
-          <createProjectCard
-            link="/createGit"
+          <nuxt-link to="/create-project" >
+            <select-project-type-card
+              imgSrc="/img/layout/icon-repos.png"
+              headline="Create new project from GitHub repos"
+              subHeadline="Select your existing Github repository to launch your app."
+              button="Create project with gitHub"
+            />
+          </nuxt-link>
+          <select-project-type-card
             imgSrc="/img/layout/icon-upload.png"
             headline="Drag and drop your site folder here"
             subHeadline="Launch your app by uploading your local files."
@@ -22,23 +22,22 @@
             :comingSoon="true"
           />
         </div>
-
       </div>
     </div>
   </div>
 </template>
 
 <script>
-
-  import createProjectCard from '~/components/_shared/createProject/createProjectCard.vue'
-  import buttonClose from '~/components/_shared/buttons/buttonClose.vue'
-
+  import SelectProjectTypeCard from "./selectProjectTypeCard";
+  import RoundButton from "../roundButton";
   export default {
+    name: 'selectProjectType',
     components: {
-      createProjectCard, buttonClose
+      RoundButton,
+      SelectProjectTypeCard
+
     }
   }
-
 </script>
 
 <style lang="scss" scoped>
@@ -49,7 +48,7 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background: $light-blue-bg-color;
+    background: $blue-lightest;
     z-index: 99;
     position: fixed;
   }
@@ -60,7 +59,7 @@
     width: 100%;
     height: 100%;
     z-index: 100;
-    background: $light-blue-bg-color;
+    background: $blue-lightest;
 
   }
   .modal {
@@ -78,7 +77,7 @@
     margin-bottom: 40px;
   }
   .title h2 {
-    color: $blue-color;
+    color: $blue;
   }
 
 

@@ -1,29 +1,27 @@
 <template>
-  <nuxt-link v-bind:to="link" v-bind:class="{'coming-soon':comingSoon}" class="option" @click.native="$store.commit('hideCreateProject')">
+  <div v-bind:class="{'coming-soon':comingSoon}" class="option" @click.native="$store.commit('hideSelectProjectType')">
     <img v-bind:src="imgSrc" />
     <h4>{{headline}}</h4>
     <p>{{subHeadline}}</p>
     <div class="btn-01">{{button}}</div>
     <p class="coming-soon-btn" v-if="comingSoon">Coming soon!</p>
-  </nuxt-link>
+  </div>
 </template>
 
 <script>
-
-  export default {
-    props: {
-      link: String,
-      imgSrc: String,
-      headline: String,
-      subHeadline: String,
-      button: String,
-      comingSoon: {
-        type: Boolean,
-        default: false
-      }
+export default {
+  name: 'selectProjectTypeCard',
+  props: {
+    imgSrc: String,
+    headline: String,
+    subHeadline: String,
+    button: String,
+    comingSoon: {
+      type: Boolean,
+      default: false
     }
   }
-
+}
 </script>
 
 <style lang="scss">
@@ -37,16 +35,16 @@
     max-width: 330px;
     padding: 30px;
     margin: 10px;
-    box-shadow: 0px 2px 30px rgba(71, 105, 255, 0);
+    box-shadow: 0 2px 30px rgba(71, 105, 255, 0);
     transition: 0.3s ease-out;
     cursor: pointer;
     position: relative;
   }
   .selectType > .option:hover {
-    box-shadow: 0px 2px 30px rgba(71, 105, 255, 0.101591);
+    box-shadow: 0 2px 30px rgba(71, 105, 255, 0.101591);
   }
   .selectType h4{
-    color: $blue-color;
+    color: $blue;
     font-weight: 700;
     margin-bottom: 20px;
     font-size: 20px;
@@ -56,10 +54,10 @@
   }
   .selectType p {
     margin-bottom: 30px;
-    color: $light-gray-color;
+    color: $gray-light;
   }
   .btn-01 {
-    color: $blue-color;
+    color: $blue;
     background: #F6F8FF;
     border: 1px solid #D6DDFF;
     text-align: center;
@@ -73,7 +71,7 @@
 
   /*COMING SOON*/
   .selectType p.coming-soon-btn {
-    background: #EFC300;
+    background: $yellow;
     color: #fff;
     padding: 3px 15px 5px;
     display: inline-block;
@@ -89,10 +87,9 @@
     display: none;
   }
   .selectType .coming-soon {
-    background: $blue-color-4;
+    background: $blue-lighter;
   }
   .selectType .coming-soon img, .selectType .coming-soon h4, .selectType .coming-soon p{
     opacity: 0.4;
   }
-
 </style>

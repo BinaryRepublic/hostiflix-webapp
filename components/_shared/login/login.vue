@@ -2,7 +2,7 @@
   <div class="login" v-if="homeState.showLoginPopup">
     <div class="login-popup">
       <div class="login-popup-close">
-        <close-icon @click.native="close" :is-fixed="false" />
+        <round-button @click.native="close" type="CLOSE" />
       </div>
       <div class="login-popup-content">
         <div class="login-popup-content-logo">
@@ -23,14 +23,14 @@
 </template>
 
 <script>
-import CloseIcon from "../closeIcon";
 import Logo from "../logo";
 import LoginButton from "./loginButton";
 import { axiosRequest } from "../../../assets/js/httpHelper";
+import RoundButton from "../roundButton";
 
 export default {
   name: "login",
-  components: {LoginButton, Logo, CloseIcon},
+  components: {RoundButton, LoginButton, Logo},
   computed: {
     homeState() {
       return this.$store.state.home;
@@ -74,7 +74,7 @@ export default {
       position: relative;
       width: 90%;
       max-width: 400px;
-      border: $blue-border;
+      border: $border-blue-light;
       background-color: #fff;
       border-radius: 8px;
 
@@ -97,7 +97,7 @@ export default {
         }
 
         .login-popup-content-headline {
-          color: $blue-color;
+          color: $blue;
           font-size: 40px;
           font-weight: bold;
           margin-bottom: 10px;

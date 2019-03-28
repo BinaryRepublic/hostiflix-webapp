@@ -56,6 +56,11 @@
   </a>
 </template>
 
+<script>
+  export default {
+    name: 'projectCard'
+  }
+</script>
 
 <style lang="scss">
   .projectCard{
@@ -92,7 +97,7 @@
     padding: 15px 30px;
   }
   .table .row:last-child {
-    border-bottom: 0px;
+    border-bottom: 0;
   }
   .table .row .col-1{
     width: 25%;
@@ -112,7 +117,7 @@
   }
   .projectCard .txt h3{
     font-size: 18px;
-    color: $blue-color;
+    color: $blue;
   }
   .projectCard .txt span {
     font-size: 14px;
@@ -121,7 +126,7 @@
     background-size: contain;
     width: 40px;
     height: 40px;
-    background-image: url("../../assets/img/layout/github-logo.png");
+    background-image: url("/img/layout/github-logo.png");
     margin-right: 15px;
   }
   .projectCard .txt .txtContent {

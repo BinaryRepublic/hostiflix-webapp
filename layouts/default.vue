@@ -1,24 +1,24 @@
 <template>
   <div>
     <logo />
-    <createProject v-if="$store.state.showCreateProject"/>
-    <navLeft />
+    <select-project-type v-if="$store.state.showSelectProjectType"/>
+    <nav-left />
     <nuxt/>
-    <profileBtn />
+    <profile-button />
   </div>
 </template>
-
 <script>
-  import navLeft from '~/components/_shared/navLeft.vue'
-  import profileBtn from '~/components/_shared/profileBtn.vue'
-  import logo from '~/components/_shared/logo.vue'
-  import createProject from '~/components/_shared/createProject/createProject.vue'
+import Logo from "../components/_shared/logo";
+import NavLeft from "../components/_shared/navLeft";
+import ProfileButton from "../components/_shared/profileButton";
+import SelectProjectType from "../components/_shared/selectProjectType/selectProjectType";
 
-
-  export default {
-    components: {
-      navLeft,profileBtn,logo,createProject
-    },
-
+export default {
+  components: {
+    SelectProjectType,
+    ProfileButton,
+    NavLeft,
+    Logo
   }
+}
 </script>

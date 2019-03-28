@@ -1,5 +1,5 @@
 <template>
-  <img class="hostiflixLogo" :class="{isFixed}" src="~/assets/img/layout/hostiflix-logo.png" alt="Logo Hostiflix">
+  <img class="hostiflixLogo" :class="{isFixed}" src="/img/layout/hostiflix-logo.png" alt="Logo Hostiflix">
 </template>
 
 <script>

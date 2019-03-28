@@ -3,18 +3,18 @@ const cookieParser = process.server ? require('cookieparser') : undefined;
 export const state = () => ({
   auth: null,
   showLogin: false,
-  showCreateProject: false
+  showSelectProjectType: false
 })
 
 export const mutations = {
   setAuth(state, auth) {
     state.auth = auth
   },
-  showCreateProject(state) {
-    state.showCreateProject = true
+  showSelectProjectType(state) {
+    state.showSelectProjectType = true
   },
-  hideCreateProject(state) {
-    state.showCreateProject = false
+  hideSelectProjectType(state) {
+    state.showSelectProjectType = false
   }
 };
 

@@ -2,19 +2,18 @@
   <div>
     <logo />
     <nuxt/>
-    <buttonBack/>
+    <round-button :is-fixed="true" type="BACK" @click.native="$store.commit('showSelectProjectType')" to="/dashboard" />
   </div>
 </template>
 
 <script>
-
-
-  import logo from '~/components/_shared/logo.vue'
-  import buttonBack from '~/components/_shared/buttons/buttonBack.vue'
+  import RoundButton from "../components/_shared/roundButton";
+  import Logo from "../components/_shared/logo";
 
   export default {
     components: {
-      logo,buttonBack
+      Logo,
+      RoundButton
     },
   }
 </script>
@@ -26,7 +25,7 @@
     font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
     font-size: 16px;
-    color: $light-gray-color;
+    color: $gray-light;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     -moz-osx-font-smoothing: grayscale;
@@ -41,7 +40,7 @@
     margin: 0;
   }
   body {
-    background: $light-blue-bg-color;
+    background: $blue-lightest;
   }
   h2 {
     font-size: 32px;
@@ -67,7 +66,7 @@
     text-decoration: none;
   }
   .mainBlue {
-    color: $blue-color;
+    color: $blue;
   }
 
 

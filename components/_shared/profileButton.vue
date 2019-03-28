@@ -9,12 +9,17 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: 'profileButton'
+}
+</script>
 
 <style lang="scss">
   .profileWrap {
     background: #FFFFFF;
     border-radius: 50px;
-    box-shadow: 0px 2px 10px rgba(71, 105, 255, 0.101591);
+    box-shadow: 0 2px 10px rgba(71, 105, 255, 0.101591);
     padding: 10px 15px 10px 10px;
     position: fixed;
     right: 40px;
@@ -33,7 +38,7 @@
     padding-left: 10px;
   }
   .profileWrap .name{
-    color: $blue-color;
+    color: $blue;
   }
   .profileWrap .email{
     font-size: 12px;

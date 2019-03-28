@@ -27,11 +27,11 @@ export default {
 
 <style lang="scss" scoped>
   .login-button {
-    border: $blue-border;
+    border: $border-blue-light;
     box-shadow: 0 1px 2px rgba(71, 105, 255, 0.2);
     border-radius: 6px;
     display: flex;
-    background-color: $light-blue-bg-color;
+    background-color: $blue-lightest;
     overflow: hidden;
 
     &:hover {
@@ -41,7 +41,7 @@ export default {
     .login-button-icon {
       padding: 12px 12px 10px 12px;
       background-color: #fff;
-      border-right: $blue-border;
+      border-right: $border-blue-light;
 
       img {
         width: 28px;
@@ -54,7 +54,7 @@ export default {
       padding: 0 20px;
 
       .login-button-text {
-        color: $blue-color;
+        color: $blue;
         font-weight: bold;
       }
     }

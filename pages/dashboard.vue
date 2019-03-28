@@ -6,8 +6,8 @@
       <h5>These are all of your projects running on hostiflix.</h5>
     </div>
     <div class="projectCards">
-      <projectCard/>
-      <createProjectCard @click.native="$store.commit('showCreateProject')"></createProjectCard>
+      <project-card/>
+      <project-create-card @click.native="$store.commit('showSelectProjectType')"></project-create-card>
     </div>
   </section>
 </template>
@@ -15,13 +15,14 @@
 
 <script>
 import { axiosRequest } from "../assets/js/httpHelper";
-import createProjectCard from '~/components/projects/createProjectCard.vue'
-import projectCard from '~/components/projects/projectCard.vue'
+import ProjectCard from "../components/projects/projectCard";
+import ProjectCreateCard from "../components/projects/projectCreateCard";
 
 export default {
   components: {
-    createProjectCard,
-    projectCard
+    ProjectCreateCard,
+    ProjectCard
+
   },
   mounted() {
     if (process.browser) {
@@ -49,7 +50,7 @@ export default {
     margin-bottom: 40px;
   }
   .title h2 {
-    color: $blue-color;
+    color: $blue;
   }
   .projectCards {
     display: flex;
@@ -62,7 +63,7 @@ export default {
     height: 280px;
     position: relative;
     width: calc(50% - 20px);
-    box-shadow: 0px 2px 30px rgba(71, 105, 255, 0);
+    box-shadow: 0 2px 30px rgba(71, 105, 255, 0);
     -webkit-transition: 0.3s ease-out;
     -moz-transition: 0.3s ease-out;
     -ms-transition: 0.3s ease-out;
@@ -71,7 +72,7 @@ export default {
     cursor: pointer;
   }
   .projectCards > a:hover {
-    box-shadow: 0px 2px 30px rgba(71, 105, 255, 0.101591);
+    box-shadow: 0 2px 30px rgba(71, 105, 255, 0.101591);
   }
 
 </style>
