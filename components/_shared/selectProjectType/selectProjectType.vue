@@ -28,16 +28,16 @@
 </template>
 
 <script>
-  import SelectProjectTypeCard from "./selectProjectTypeCard";
-  import RoundButton from "../roundButton";
-  export default {
-    name: 'selectProjectType',
-    components: {
-      RoundButton,
-      SelectProjectTypeCard
+import SelectProjectTypeCard from './selectProjectTypeCard';
+import RoundButton from '../roundButton';
+export default {
+  name: 'selectProjectType',
+  components: {
+    RoundButton,
+    SelectProjectTypeCard
 
-    }
   }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -79,6 +79,5 @@
   .title h2 {
     color: $blue;
   }
-
 
 </style>

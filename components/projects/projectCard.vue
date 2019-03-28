@@ -57,9 +57,9 @@
 </template>
 
 <script>
-  export default {
-    name: 'projectCard'
-  }
+export default {
+  name: 'projectCard'
+};
 </script>
 
 <style lang="scss">
@@ -145,6 +145,5 @@
   .table::-webkit-scrollbar-thumb{
     background-color: #d7d7d7; opacity: .1;
   }
-
 
 </style>

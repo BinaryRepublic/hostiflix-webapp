@@ -6,13 +6,13 @@
 const Cookie = process.client ? require('js-cookie') : undefined;
 
 export default {
-  name: "logout",
+  name: 'logout',
   methods: {
-    logout() {
-      Cookie.remove("auth", { path: "" });
-      this.$store.commit("setAuth", null);
-      this.$router.push("/");
+    logout () {
+      Cookie.remove('auth', { path: '' });
+      this.$store.commit('setAuth', null);
+      this.$router.push('/');
     }
   }
-}
+};
 </script>

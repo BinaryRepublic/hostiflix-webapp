@@ -3,10 +3,10 @@ export const state = () => ({
 });
 
 export const mutations = {
-  openLoginPopup(state) {
-    state.showLoginPopup = true
+  openLoginPopup (state) {
+    state.showLoginPopup = true;
   },
-  closeLoginPopup(state) {
-    state.showLoginPopup = false
+  closeLoginPopup (state) {
+    state.showLoginPopup = false;
   }
 };

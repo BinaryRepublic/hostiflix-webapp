@@ -7,17 +7,16 @@
 </template>
 
 <script>
-  import RoundButton from "../components/_shared/roundButton";
-  import Logo from "../components/_shared/logo";
+import RoundButton from '../components/_shared/roundButton';
+import Logo from '../components/_shared/logo';
 
-  export default {
-    components: {
-      Logo,
-      RoundButton
-    },
+export default {
+  components: {
+    Logo,
+    RoundButton
   }
+};
 </script>
-
 
 <style lang="scss">
 
@@ -68,6 +67,5 @@
   .mainBlue {
     color: $blue;
   }
-
 
 </style>

@@ -4,30 +4,30 @@ export const state = () => ({
   auth: null,
   showLogin: false,
   showSelectProjectType: false
-})
+});
 
 export const mutations = {
-  setAuth(state, auth) {
-    state.auth = auth
+  setAuth (state, auth) {
+    state.auth = auth;
   },
-  showSelectProjectType(state) {
-    state.showSelectProjectType = true
+  showSelectProjectType (state) {
+    state.showSelectProjectType = true;
   },
-  hideSelectProjectType(state) {
-    state.showSelectProjectType = false
+  hideSelectProjectType (state) {
+    state.showSelectProjectType = false;
   }
 };
 
 export const actions = {
-  nuxtServerInit({ commit }, { req }) {
+  nuxtServerInit ({ commit }, { req }) {
     let auth = null;
     if (req.headers.cookie) {
       const parsed = cookieParser.parse(req.headers.cookie);
       try {
-        auth = JSON.parse(parsed.auth)
+        auth = JSON.parse(parsed.auth);
       } catch (err) {
         console.error(err);
-        return
+        return;
       }
     }
     commit('setAuth', auth);

@@ -12,11 +12,10 @@
   </section>
 </template>
 
-
 <script>
-import { axiosRequest } from "../assets/js/httpHelper";
-import ProjectCard from "../components/projects/projectCard";
-import ProjectCreateCard from "../components/projects/projectCreateCard";
+import { axiosRequest } from '../assets/js/httpHelper';
+import ProjectCard from '../components/projects/projectCard';
+import ProjectCreateCard from '../components/projects/projectCreateCard';
 
 export default {
   components: {
@@ -24,21 +23,21 @@ export default {
     ProjectCard
 
   },
-  mounted() {
+  mounted () {
     if (process.browser) {
       if (!this.$store.state.auth) {
-        this.$router.push("/");
+        this.$router.push('/');
         return;
       }
       axiosRequest(this.$store, {
         method: 'GET',
         url: '/projects'
       }).then(res => {
-        console.log("fetched projects: ", res.data)
-      })
+        console.log('fetched projects: ', res.data);
+      });
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

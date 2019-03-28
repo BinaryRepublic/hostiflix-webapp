@@ -11,9 +11,9 @@
 </template>
 
 <script>
-  export default {
-    name: 'projectCreateCard'
-  }
+export default {
+  name: 'projectCreateCard'
+};
 </script>
 
 <style  lang="scss">
@@ -57,6 +57,5 @@
     box-shadow: 0 2px 30px rgba(71, 105, 255, 0.101591);
 
   }
-
 
 </style>

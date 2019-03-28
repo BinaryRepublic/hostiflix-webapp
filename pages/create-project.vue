@@ -116,11 +116,10 @@
   </section>
 </template>
 
-
 <script>
-  export default {
-    layout: 'createProject'
-  }
+export default {
+  layout: 'createProject'
+};
 </script>
 
 <style lang="scss" scoped>

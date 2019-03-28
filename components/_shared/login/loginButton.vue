@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: "loginButton",
+  name: 'loginButton',
   props: {
     imgUrl: {
       type: String,
@@ -22,7 +22,7 @@ export default {
       required: true
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

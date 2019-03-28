@@ -11,7 +11,7 @@ const TYPES = {
 };
 
 export default {
-  name: "roundButton",
+  name: 'roundButton',
   props: {
     type: {
       type: String,
@@ -26,7 +26,7 @@ export default {
       required: false
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

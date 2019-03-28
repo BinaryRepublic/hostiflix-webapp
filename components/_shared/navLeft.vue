@@ -19,11 +19,11 @@
 </template>
 
 <script>
-import Logout from "./logout";
+import Logout from './logout';
 
 export default {
-  components: {Logout}
-}
+  components: { Logout }
+};
 </script>
 
 <style lang="scss">

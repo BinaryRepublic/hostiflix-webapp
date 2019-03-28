@@ -23,38 +23,38 @@
 </template>
 
 <script>
-import Logo from "../logo";
-import LoginButton from "./loginButton";
-import { axiosRequest } from "../../../assets/js/httpHelper";
-import RoundButton from "../roundButton";
+import Logo from '../logo';
+import LoginButton from './loginButton';
+import { axiosRequest } from '../../../assets/js/httpHelper';
+import RoundButton from '../roundButton';
 
 export default {
-  name: "login",
-  components: {RoundButton, LoginButton, Logo},
+  name: 'login',
+  components: { RoundButton, LoginButton, Logo },
   computed: {
-    homeState() {
+    homeState () {
       return this.$store.state.home;
     }
   },
   methods: {
-    loginWithGithub() {
+    loginWithGithub () {
       axiosRequest(this.$store, {
         method: 'GET',
         url: '/auth/login'
       }, false).then(res => {
         const githubRedirectUrl = res.data.redirectUrlGithub;
         if (githubRedirectUrl) {
-          window.location = githubRedirectUrl
+          window.location = githubRedirectUrl;
         } else {
-          console.error("failed fetching Github authorize url")
+          console.error('failed fetching Github authorize url');
         }
-      })
+      });
     },
-    close() {
+    close () {
       this.$store.commit('home/closeLoginPopup');
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">

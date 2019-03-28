@@ -12,7 +12,7 @@
 <script>
 export default {
   name: 'profileButton'
-}
+};
 </script>
 
 <style lang="scss">

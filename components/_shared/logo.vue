@@ -4,14 +4,14 @@
 
 <script>
 export default {
-  name: "logo",
+  name: 'logo',
   props: {
     isFixed: {
       type: Boolean,
       default: true
     }
   }
-}
+};
 </script>
 
 <style lang="scss">
