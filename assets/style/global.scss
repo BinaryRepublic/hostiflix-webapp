@@ -4,8 +4,54 @@ $blue-color-2: #B5C2FF;
 $blue-border-bg: #D6DDFF;
 $blue-color-4: #E9EDFF;
 $light-blue-bg-color: #F6F8FF;
+$very-light-blue: #D6DDFF;
 
 $light-gray-color: #8C8C8C;
 $dark-gray-color: #5D5D5D;
-$blue-border: 1px solid #D6DDFF;
+$blue-border: 1px solid $very-light-blue;
 $yellow-color:#EFC300;
+
+html {
+  font-family: 'Montserrat', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  color: $light-gray-color;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+}
+body {
+  background: $light-blue-bg-color;
+}
+h2 {
+  font-size: 32px;
+  margin-bottom: 5px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  font-weight: 300;
+
+}
+h5 {
+  font-size: 16px;
+  font-weight: 300;
+
+}
+h6 {
+  font-size: 14px;
+}
+a {
+  text-decoration: none;
+}

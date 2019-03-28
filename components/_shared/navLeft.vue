@@ -10,12 +10,21 @@
           <span @click="$store.commit('showCreateProject')">+ Create a new project</span>
         </li>
       </ul>
+      <logout />
     </div>
     <nuxt-link to="/" class="logOut">
       <span>Log out</span>
       <img src="../../static/img/layout/icon-logout.png"/></nuxt-link>
   </div>
 </template>
+
+<script>
+import Logout from "./logout";
+
+export default {
+  components: {Logout}
+}
+</script>
 
 <style lang="scss">
 

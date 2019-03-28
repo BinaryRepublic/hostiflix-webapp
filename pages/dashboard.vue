@@ -7,23 +7,37 @@
     </div>
     <div class="projectCards">
       <projectCard/>
-      <createProjectCard  @click.native="$store.commit('showCreateProject')"></createProjectCard>
+      <createProjectCard @click.native="$store.commit('showCreateProject')"></createProjectCard>
     </div>
   </section>
 </template>
 
 
 <script>
-  import createProjectCard from '~/components/projects/createProjectCard.vue'
-  import projectCard from '~/components/projects/projectCard.vue'
+import { axiosRequest } from "../assets/js/httpHelper";
+import createProjectCard from '~/components/projects/createProjectCard.vue'
+import projectCard from '~/components/projects/projectCard.vue'
 
-  export default {
-    components: {
-      createProjectCard,projectCard
+export default {
+  components: {
+    createProjectCard,
+    projectCard
+  },
+  mounted() {
+    if (process.browser) {
+      if (!this.$store.state.auth) {
+        this.$router.push("/");
+        return;
+      }
+      axiosRequest(this.$store, {
+        method: 'GET',
+        url: '/projects'
+      }).then(res => {
+        console.log("fetched projects: ", res.data)
+      })
     }
-
-
   }
+}
 </script>
 
 <style lang="scss" scoped>
