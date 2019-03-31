@@ -1,8 +1,12 @@
-const pkg = require('./package')
+const pkg = require('./package');
 
 
 module.exports = {
   mode: 'universal',
+
+  env: {
+    apiBaseUrl: process.env.API_BASE_URL || 'https://api.hostiflix.com'
+  },
 
   /*
   ** Headers of the page
@@ -54,7 +58,7 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend(config, ctx) {
-      
+
     }
   }
 }

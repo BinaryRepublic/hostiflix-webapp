@@ -1,14 +1,29 @@
 <template>
-  <img class="hostiflixLogo" src="~/assets/img/layout/hostiflix-logo.png" alt="Logo Hostiflix">
+  <img class="hostiflixLogo" :class="{isFixed}" src="/img/layout/hostiflix-logo.png" alt="Logo Hostiflix">
 </template>
+
+<script>
+export default {
+  name: 'logo',
+  props: {
+    isFixed: {
+      type: Boolean,
+      default: true
+    }
+  }
+};
+</script>
 
 <style lang="scss">
 .hostiflixLogo {
   width: 100%;
-  max-width: 70px;
-  z-index: 101;
-  position: fixed;
-  top: 40px;
-  left: 40px;
+
+  &.isFixed {
+    position: fixed;
+    max-width: 70px;
+    top: 40px;
+    left: 40px;
+    z-index: 101;
+  }
 }
 </style>

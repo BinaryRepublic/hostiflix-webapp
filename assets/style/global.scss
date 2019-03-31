@@ -1,11 +1,55 @@
 /*VARIABLES*/
-$blue-color: #4769FF;
-$blue-color-2: #B5C2FF;
-$blue-border-bg: #D6DDFF;
-$blue-color-4: #E9EDFF;
-$light-blue-bg-color: #F6F8FF;
+$blue: #4769FF;
+$blue-light: #D6DDFF;
+$blue-lighter: #E9EDFF;
+$blue-lightest: #F6F8FF;
+$gray-light: #8C8C8C;
+$gray-dark: #5D5D5D;
+$yellow: #EFC300;
 
-$light-gray-color: #8C8C8C;
-$dark-gray-color: #5D5D5D;
-$blue-border: 1px solid #D6DDFF;
-$yellow-color:#EFC300;
+$border-blue-light: 1px solid $blue-light;
+
+html {
+  font-family: 'Montserrat', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  color: $gray-light;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+}
+body {
+  background: $blue-lightest;
+}
+h2 {
+  font-size: 32px;
+  margin-bottom: 5px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+  font-weight: 300;
+
+}
+h5 {
+  font-size: 16px;
+  font-weight: 300;
+
+}
+h6 {
+  font-size: 14px;
+}
+a {
+  text-decoration: none;
+}

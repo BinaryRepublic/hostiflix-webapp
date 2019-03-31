@@ -7,15 +7,24 @@
           <span>portfolio-webapp</span>
         </li>
         <li>
-          <span @click="$store.commit('showCreateProject')">+ Create a new project</span>
+          <span @click="$store.commit('showSelectProjectType')">+ Create a new project</span>
         </li>
       </ul>
+      <logout />
     </div>
     <nuxt-link to="/" class="logOut">
       <span>Log out</span>
-      <img src="../../static/img/layout/icon-logout.png"/></nuxt-link>
+      <img src="/img/layout/icon-logout.png"/></nuxt-link>
   </div>
 </template>
+
+<script>
+import Logout from './logout';
+
+export default {
+  components: { Logout }
+};
+</script>
 
 <style lang="scss">
 
@@ -32,7 +41,7 @@
     position: fixed;
     z-index: 99;
     overflow-y: auto;
-    box-shadow: 0px 2px 40px rgba(71, 105, 255, 0.101591);
+    box-shadow: 0 2px 40px rgba(71, 105, 255, 0.101591);
   }
 
   .projectsList {
@@ -41,7 +50,7 @@
   .projectsList h4 a{
     font-weight: 700;
     margin-bottom: 10px;
-    color: $blue-color;
+    color: $blue;
     display: block;
   }
 
@@ -52,12 +61,12 @@
   }
   .projectsList ul li {
     padding: 10px 0;
-    color: $blue-color;
+    color: $blue;
     display: block;
 
   }
   .projectsList ul li:last-child{
-    color: $light-gray-color;
+    color: $gray-light;
   }
   .projectsList ul li span {
     cursor: pointer;
@@ -68,10 +77,10 @@
     display: block;
     bottom: 0;
     left: 0;
-    border-top:$blue-border;
+    border-top:$border-blue-light;
     padding: 15px 40px;
     font-size: 14px;
-    color: $light-gray-color;
+    color: $gray-light;
   }
   .logOut img {
     max-width: 19px;

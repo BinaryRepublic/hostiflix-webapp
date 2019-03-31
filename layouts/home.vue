@@ -1,16 +1,12 @@
 <template>
   <div>
-    <span @click="$store.commit('home/openLoginPopup')">Login</span>
+    <nuxt />
+    <login />
   </div>
 </template>
-
 <script>
 import Login from '../components/_shared/login/login';
-
 export default {
-  components: {
-    Login
-  },
-  layout: 'home'
+  components: { Login }
 };
 </script>

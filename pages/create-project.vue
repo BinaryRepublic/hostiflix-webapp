@@ -12,7 +12,7 @@
         <div class="box">
           <div class="row m-b-25">
             <div class="col-left-sm">
-              <img src="../static/img/layout/github-logo.png"/>
+              <img src="/img/layout/github-logo.png"/>
             </div>
             <div>
               <h2>GitHub</h2>
@@ -63,7 +63,7 @@
         <div class="box">
           <div class="row m-b-25">
             <div class="col-left-sm">
-              <img class="branchIcon" src="../static/img/layout/branch-icon.png"/>
+              <img class="branchIcon" src="/img/layout/branch-icon.png"/>
             </div>
             <div class="col-50">
               <h2>Source branch</h2>
@@ -116,16 +116,10 @@
   </section>
 </template>
 
-
 <script>
-
-
-  export default {
-    components: {
-
-    },
-    layout: 'noNavLeft',
-  }
+export default {
+  layout: 'createProject'
+};
 </script>
 
 <style lang="scss" scoped>
@@ -135,7 +129,7 @@
   }
   .createContainer {
     background: #fff;
-    border: $blue-border;
+    border: $border-blue-light;
     width: 80%;
     max-width: 850px;
     margin: 50px auto;
@@ -144,7 +138,7 @@
 
   }
   .createContainer h2 {
-    color: $blue-color;
+    color: $blue;
     margin-bottom: 65px;
   }
   .title {
@@ -152,13 +146,13 @@
   }
   .title h4 {
     font-size: 20px;
-    color: $dark-gray-color;
+    color: $gray-dark;
     margin-bottom: 5px;
     font-weight: 400;
   }
   .createContainer p {
     font-size: 14px;
-    color: $light-gray-color;
+    color: $gray-light;
   }
   .component {
     margin-bottom: 45px;
@@ -167,7 +161,7 @@
     margin-bottom: 0;
   }
   .box {
-    border: $blue-border;
+    border: $border-blue-light;
     border-radius: 4px;
     padding: 35px;
   }
@@ -194,7 +188,7 @@
     max-width: 40px;
   }
   .search {
-    border: $blue-border;
+    border: $border-blue-light;
     border-radius: 4px;
     padding: 10px;
     font-size: 14px;
@@ -222,7 +216,7 @@
     max-width: 32px;
   }
   .branchComponent p.targetSub {
-    color: $blue-color;
+    color: $blue;
     position: relative;
   }
   .branchComponent p.targetSub:before {
@@ -230,7 +224,7 @@
     position: absolute;
     width: 26px;
     height: 16px;
-    background-image: url("../static/img/layout/arrow-target.png");
+    background-image: url("/img/layout/arrow-target.png");
     background-size: 26px;
     background-position: center;
     left: -40px;
@@ -240,7 +234,7 @@
 
   .blueBtn {
     border-radius: 5px;
-    background: $blue-color;
+    background: $blue;
     width: 100%;
     color: #fff;
     font-size: 14px;

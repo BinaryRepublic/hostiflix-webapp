@@ -1,12 +1,35 @@
+const cookieParser = process.server ? require('cookieparser') : undefined;
+
 export const state = () => ({
-  showCreateProject: false
-})
+  auth: null,
+  showLogin: false,
+  showSelectProjectType: false
+});
 
 export const mutations = {
-  showCreateProject(state) {
-    state.showCreateProject = true
+  setAuth (state, auth) {
+    state.auth = auth;
   },
-  hideCreateProject(state) {
-    state.showCreateProject = false
+  showSelectProjectType (state) {
+    state.showSelectProjectType = true;
+  },
+  hideSelectProjectType (state) {
+    state.showSelectProjectType = false;
   }
-}
+};
+
+export const actions = {
+  nuxtServerInit ({ commit }, { req }) {
+    let auth = null;
+    if (req.headers.cookie) {
+      const parsed = cookieParser.parse(req.headers.cookie);
+      try {
+        auth = JSON.parse(parsed.auth);
+      } catch (err) {
+        console.error(err);
+        return;
+      }
+    }
+    commit('setAuth', auth);
+  }
+};
