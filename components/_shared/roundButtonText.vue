@@ -38,7 +38,7 @@ export default {
     box-shadow: 0 2px 10px rgba(71, 105, 255, 0.101591);
     border-radius: 30px;
     padding: 20px 34px 18px 55px;
-    z-index: 200;
+    z-index: 99;
     cursor: pointer;
     transition: 0.15s ease-out;
     color: #374CFF;
