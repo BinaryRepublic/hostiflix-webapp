@@ -3,10 +3,10 @@
     <round-button type="CLOSE" :is-fixed="true" @click.native="$store.commit('hideSelectProjectType')"/>
     <div class="modal">
       <div class="title">
-        <h2>Welcome to Hostiflix</h2>
-        <h4>Let’s start right off with your first project.</h4>
-        <div class="selectType">
-          <nuxt-link to="/create-project" >
+        <h2 data-aos="fade-down" data-aos-delay="50" data-aos-duration="600">Welcome to Hostiflix</h2>
+        <h4 data-aos="fade-down" data-aos-duration="600">Let’s start right off with your first project.</h4>
+        <div class="selectType" data-aos="fade-up" data-aos-duration="600">
+          <nuxt-link to="/project/create">
             <select-project-type-card
               imgSrc="/img/layout/icon-repos.png"
               headline="Create new project from GitHub repos"

@@ -1,5 +1,5 @@
 <template>
-  <div class="profileWrap">
+  <div class="profileWrap" data-aos="fade-down" data-aos-duration="600">
     <div class="photo"></div>
     <div class="txt">
       <p class="name">Jonathan Kuhl</p>
@@ -33,6 +33,9 @@ export default {
     height: 38px;
     background: #ccc;
     border-radius: 50px;
+    background-image: url(https://randomuser.me/api/portraits/women/79.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
   }
   .profileWrap .txt{
     padding-left: 10px;

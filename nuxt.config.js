@@ -31,13 +31,13 @@ module.exports = {
   /*
   ** Global CSS
   */
-  css: [
-  ],
+  css: ['aos/dist/aos.css'],
 
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
+    { src: '~/plugins/aos', ssr: false }
   ],
 
   /*

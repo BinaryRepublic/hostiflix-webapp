@@ -49,6 +49,7 @@ export default {
 
     &.BACK {
       background-image: url("/img/layout/arrow-left.png");
+      background-position: 23px center;
       background-size: 11px;
     }
 
@@ -62,6 +63,7 @@ export default {
       width: 65px;
       height: 65px;
       top: 35px;
+      background-position: 25px center;
       box-shadow: 0 10px 20px rgba(71, 105, 255, 0.101591);
     }
 

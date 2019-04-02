@@ -6,21 +6,16 @@
       <h5 data-aos="fade-left" data-aos-delay="50" data-aos-duration="600">These are all of your projects running on hostiflix.</h5>
     </div>
     <div class="projectCards">
-      <project-card data-aos="fade-up"/>
-      <project-create-card data-aos="fade-up" data-aos-delay="50" @click.native="$store.commit('showSelectProjectType')"></project-create-card>
+
     </div>
   </section>
 </template>
 
 <script>
-import { axiosRequest } from '../assets/js/httpHelper';
-import ProjectCard from '../components/projects/projectCard';
-import ProjectCreateCard from '../components/projects/projectCreateCard';
+import { axiosRequest } from '../../assets/js/httpHelper';
 
 export default {
   components: {
-    ProjectCreateCard,
-    ProjectCard
 
   },
   mounted () {

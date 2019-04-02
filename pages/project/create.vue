@@ -1,7 +1,7 @@
 <template>
   <section class="container">
     <!--CREATE PROJECTS-->
-    <div class="createContainer">
+    <div class="createContainer" data-aos="fade-up" data-aos-duration="600">
       <h2>Create a new project</h2>
       <!-- COMPONENT STARTS-->
       <div class="component">
@@ -19,7 +19,7 @@
               <p>Select the GitHub repository that contains the projects source code.</p>
             </div>
           </div>
-          <div class="row ">
+          <div class="row">
             <div class="col-left-sm">
             </div>
             <div class="col-100">
@@ -193,7 +193,7 @@ export default {
     padding: 10px;
     font-size: 14px;
     width: 100%;
-    height: 45px;
+    height: 45px; outline: none;
   }
   .box label {
     font-size: 14px;
@@ -243,6 +243,7 @@ export default {
     border: none;
     font-weight: 900;
     cursor: pointer;
+    outline: none;
   }
 
 </style>

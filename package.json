@@ -11,6 +11,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "aos": "^2.3.4",
     "axios": "^0.18.0",
     "cookieparser": "^0.1.0",
     "cross-env": "^5.2.0",
