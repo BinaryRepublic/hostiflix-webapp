@@ -34,6 +34,7 @@ export default {
   .addCircle{
     font-size: 40px;
     color: $blue;
+    padding-top: 7px;
     font-weight: 700;
     background: $blue-lightest;
     border: $border-blue-light;

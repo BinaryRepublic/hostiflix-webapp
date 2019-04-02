@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link to="/dashboard" @click.native="$store.commit('hideSelectProjectType')">
+  <nuxt-link to="../dashboard" @click.native="$store.commit('hideSelectProjectType')">
     <img class="hostiflixLogo" :class="{isFixed}" src="/img/layout/hostiflix-logo.png" alt="Logo Hostiflix">
   </nuxt-link>
 </template>

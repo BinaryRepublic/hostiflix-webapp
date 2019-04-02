@@ -7,41 +7,41 @@
         <div class="col-3">Domain</div>
       </div>
 
-      <div class="row">
+      <nuxt-link class="row" to="/project/Tmkde3d">
         <div class="col-1">master</div>
         <div class="col-2">20 sec ago</div>
         <div class="col-3">master-sd3.hostiflix.com</div>
-      </div>
+      </nuxt-link>
 
-      <div class="row">
+      <nuxt-link class="row" to="/project/Tmkde3d">
         <div class="col-1">development</div>
         <div class="col-2">1 min ago</div>
         <div class="col-3">development-sd3.hostiflix.com</div>
-      </div>
+      </nuxt-link>
 
-      <div class="row">
+      <nuxt-link class="row" to="/project/Tmkde3d">
         <div class="col-1">development</div>
         <div class="col-2">1 min ago</div>
         <div class="col-3">development-sd3.hostiflix.com</div>
-      </div>
+      </nuxt-link>
 
-      <div class="row">
+      <nuxt-link class="row" to="/project/Tmkde3d">
         <div class="col-1">development</div>
         <div class="col-2">1 min ago</div>
         <div class="col-3">development-sd3.hostiflix.com</div>
-      </div>
+      </nuxt-link>
 
-      <div class="row">
+      <nuxt-link class="row" to="/project/Tmkde3d">
         <div class="col-1">development</div>
         <div class="col-2">1 min ago</div>
         <div class="col-3">development-sd3.hostiflix.com</div>
-      </div>
+      </nuxt-link>
 
-      <div class="row">
+      <nuxt-link class="row" to="/project/Tmkde3d">
         <div class="col-1">development</div>
         <div class="col-2">1 min ago</div>
         <div class="col-3">development-sd3.hostiflix.com</div>
-      </div>
+      </nuxt-link>
 
     </div>
     <div class="txt">
@@ -57,19 +57,20 @@
 </template>
 
 <script>
-export default {
-  name: 'projectCard'
-};
+  export default {
+    name: 'projectCard'
+  };
 </script>
 
 <style lang="scss">
-  .projectCard{
+  .projectCard {
     background: #F6F8FF;
     border: 1px solid #D6DDFF;
     box-sizing: border-box;
     border-radius: 6px;
 
   }
+
   .table {
     font-size: 14px;
     height: 67%;
@@ -79,7 +80,8 @@ export default {
     border-bottom: 1px solid #D6DDFF;
     overflow-y: auto;
   }
-  .table .titleTable{
+
+  .table .titleTable {
     font-weight: 800;
     position: absolute;
     z-index: 2;
@@ -88,40 +90,50 @@ export default {
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
   }
+
   .table .row:nth-child(2) {
     margin-top: 48px;
   }
+
   .table .row {
     display: flex;
     border-bottom: 1px solid #D6DDFF;
     padding: 15px 30px;
+    color: $gray-light;
   }
+
   .table .row:last-child {
     border-bottom: 0;
   }
-  .table .row .col-1{
+
+  .table .row .col-1 {
     width: 25%;
   }
-  .table .row .col-2{
+
+  .table .row .col-2 {
     width: 25%;
   }
-  .table .row .col-3{
+
+  .table .row .col-3 {
     width: 50%;
   }
 
-  .projectCard .txt{
+  .projectCard .txt {
     height: 33%;
     display: flex;
     align-items: center;
     padding: 0 30px;
   }
-  .projectCard .txt h3{
+
+  .projectCard .txt h3 {
     font-size: 18px;
     color: $blue;
   }
+
   .projectCard .txt span {
     font-size: 14px;
   }
+
   .projectCard .txt .projectTypeImg {
     background-size: contain;
     width: 40px;
@@ -129,21 +141,23 @@ export default {
     background-image: url("/img/layout/github-logo.png");
     margin-right: 15px;
   }
+
   .projectCard .txt .txtContent {
     display: flex;
   }
 
-  .table::-webkit-scrollbar-track{
+  .table::-webkit-scrollbar-track {
     background-color: #f5f5f5;
   }
 
-  .table::-webkit-scrollbar{
+  .table::-webkit-scrollbar {
     width: 6px;
     background-color: #f5f5f5;
   }
 
-  .table::-webkit-scrollbar-thumb{
-    background-color: #d7d7d7; opacity: .1;
+  .table::-webkit-scrollbar-thumb {
+    background-color: #d7d7d7;
+    opacity: .1;
   }
 
 </style>

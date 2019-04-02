@@ -38,7 +38,7 @@ export default {
     background-repeat: no-repeat;
   }
   .profileWrap .txt{
-    padding-left: 10px;
+    padding-left: 13px;
   }
   .profileWrap .name{
     color: $blue;

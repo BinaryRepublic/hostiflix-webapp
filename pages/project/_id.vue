@@ -1,9 +1,10 @@
 <template>
   <section class="container">
+    <round-button-text :is-fixed="true" type="BACK" to="../dashboard" />
     <!--PROJECTS-->
     <div class="title">
-      <h2 data-aos="fade-left" data-aos-duration="600">My projects</h2>
-      <h5 data-aos="fade-left" data-aos-delay="50" data-aos-duration="600">These are all of your projects running on hostiflix.</h5>
+      <h2 data-aos="fade-left" data-aos-duration="600">portfolio-webapp</h2>
+      <h5 data-aos="fade-left" data-aos-delay="50" data-aos-duration="600">Last updated 13 seconds ago</h5>
     </div>
     <div class="projectCards">
 
@@ -13,10 +14,11 @@
 
 <script>
 import { axiosRequest } from '../../assets/js/httpHelper';
+import roundButtonText from '../../components/_shared/roundButtonText';
 
 export default {
   components: {
-
+    roundButtonText
   },
   mounted () {
     if (process.browser) {
