@@ -4,7 +4,7 @@
       <h4><nuxt-link to="dashboard">My Projects</nuxt-link></h4>
       <ul>
         <li v-for="project in projects">
-          <span>{{project.name}}</span>
+          <nuxt-link to="/project/Tmkde3d">{{project.name}}</nuxt-link>
         </li>
         <li>
           <span @click="$store.commit('showSelectProjectType')">+ Create a new project</span>
@@ -83,6 +83,9 @@ export default {
   }
   .projectsList ul li span {
     cursor: pointer;
+  }
+  .projectsList ul li a {
+    color: $blue;
   }
   .logOut {
     position: absolute;
