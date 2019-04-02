@@ -2,42 +2,49 @@
   <div class="projectCard">
     <div class="table">
       <div class="row titleTable">
+        <div class="col-0">Status</div>
         <div class="col-1">Branch</div>
         <div class="col-2">Updated</div>
         <div class="col-3 ">Domain</div>
       </div>
 
       <div class="row" to="/project/Tmkde3d">
+        <div class="col-0"><span class="green"></span>Running</div>
         <div class="col-1">master</div>
         <div class="col-2">20 sec ago</div>
         <div class="col-3">master-sd3.hostiflix.com</div>
       </div>
 
       <div class="row" to="/project/Tmkde3d">
+        <div class="col-0"><span class="green"></span>Running</div>
         <div class="col-1">development</div>
         <div class="col-2">1 min ago</div>
         <div class="col-3">development-sd3.hostiflix.com</div>
       </div>
 
       <div class="row" to="/project/Tmkde3d">
+        <div class="col-0"><span class="green"></span>Running</div>
         <div class="col-1">development</div>
         <div class="col-2">1 min ago</div>
         <div class="col-3">development-sd3.hostiflix.com</div>
       </div>
 
       <div class="row" to="/project/Tmkde3d">
+        <div class="col-0"><span class="green"></span>Running</div>
         <div class="col-1">development</div>
         <div class="col-2">1 min ago</div>
         <div class="col-3">development-sd3.hostiflix.com</div>
       </div>
 
       <div class="row" to="/project/Tmkde3d">
+        <div class="col-0"><span class="green"></span>Running</div>
         <div class="col-1">development</div>
         <div class="col-2">1 min ago</div>
         <div class="col-3">development-sd3.hostiflix.com</div>
       </div>
 
       <div class="row" to="/project/Tmkde3d">
+        <div class="col-0"><span class="green"></span>Running</div>
         <div class="col-1">development</div>
         <div class="col-2">1 min ago</div>
         <div class="col-3">development-sd3.hostiflix.com</div>
@@ -97,12 +104,24 @@
     border-bottom: 0;
   }
 
+  .table .row .col-0 {
+    width: 14%;
+  }
+  .green {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    background-color: #5FD574;
+    margin-right: 7px;
+  }
+
   .table .row .col-1 {
-    width: 25%;
+    width: 18%;
   }
 
   .table .row .col-2 {
-    width: 25%;
+    width: 18%;
   }
 
   .table .row .col-3 {
