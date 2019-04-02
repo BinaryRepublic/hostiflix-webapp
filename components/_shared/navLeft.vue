@@ -3,8 +3,8 @@
     <div class="projectsList">
       <h4><nuxt-link to="dashboard">My Projects</nuxt-link></h4>
       <ul>
-        <li>
-          <span>portfolio-webapp</span>
+        <li v-for="project in projects">
+          <span>{{project.name}}</span>
         </li>
         <li>
           <span @click="$store.commit('showSelectProjectType')">+ Create a new project</span>
@@ -19,7 +19,22 @@
 
 <script>
 export default {
-  components: {  }
+  components: {},
+  data() {
+    return {
+      projects: [
+        {
+          name: 'Portfolio1',
+        },
+        {
+          name: 'Portfolio2',
+        },
+        {
+          name: 'Portfolio3',
+        },
+      ]
+    }
+  },
 };
 </script>
 
@@ -60,6 +75,7 @@ export default {
     padding: 10px 0;
     color: $blue;
     display: block;
+    font-size: 13px;
 
   }
   .projectsList ul li:last-child{
@@ -76,7 +92,7 @@ export default {
     left: 0;
     border-top:$border-blue-light;
     padding: 15px 40px;
-    font-size: 14px;
+    font-size: 13px;
     color: $gray-light;
   }
   .logOut img {
