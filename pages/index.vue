@@ -28,9 +28,6 @@ export default {
 
 
 <style lang="scss">
-  body {
-    background: #fff;
-  }
   .container {
     width: 90%;
     max-width: 1200px;
