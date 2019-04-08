@@ -1,5 +1,4 @@
 <template>
-
   <section class="section-1">
     <div class="container">
       <div class="txt c-50">
@@ -23,14 +22,12 @@
 </template>
 
 <script>
-
   export default {
     name: 'HomeSection1',
     components: {
 
-    },
-
-  };
+    }
+  }
 </script>
 
 <style lang="scss">
@@ -38,6 +35,7 @@
   .section-1 {
     margin-bottom: 40px;
     padding-top: 80px;
+    background: #fff;
   }
   .section-1 .container {
     align-items: center;
@@ -50,12 +48,12 @@
     margin-bottom: 30px;
   }
   .section-1 h2{
-    font-size: 20px;
+    font-size: 20px !important;
     font-weight: 400;
     max-width: 430px;
     margin-bottom: 40px;
     line-height: 140%;
-    color: $gray-light;
+    color: $gray-light !important;
   }
   .airBalloon {
     position: relative;

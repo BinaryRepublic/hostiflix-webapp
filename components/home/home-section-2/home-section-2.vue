@@ -17,18 +17,17 @@
 </template>
 
 <script>
-  import Tabs from '~/components/home/tabs';
-  import Tab from '~/components/home/tab';
-  import HomeSection2Github from '~/components/home/home-section-2/home-section-2-github';
-  import HomeSection2Drag from '~/components/home/home-section-2/home-section-2-drag';
+  import Tabs from '~/components/home/tabs'
+  import Tab from '~/components/home/tab'
+  import HomeSection2Github from '~/components/home/home-section-2/home-section-2-github'
+  import HomeSection2Drag from '~/components/home/home-section-2/home-section-2-drag'
 
   export default {
     name: 'HomeSection2',
     components: {
-      Tabs, Tab, HomeSection2Github,HomeSection2Drag
-    },
-
-  };
+      Tabs, Tab, HomeSection2Github, HomeSection2Drag
+    }
+  }
 </script>
 
 <style lang="scss">
@@ -37,12 +36,14 @@
     background-position: center 400px ;
     background-repeat: no-repeat;
     padding-bottom: 150px;
+    background: #fff;
   }
   .section-2 .container {
-    display: block;
+    display: block !important;
     text-align: center;
   }
   .section-2 h2 {
+    width: 100%;
     margin-bottom: 30px;
   }
   .section-2 .tabs ul{

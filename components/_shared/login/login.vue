@@ -1,6 +1,6 @@
 <template>
-  <div class="login" v-if="homeState.showLoginPopup">
-    <div class="login-popup">
+  <div class="login" v-if="homeState.showLoginPopup" data-aos="fade-in" data-aos-duration="400">
+    <div class="login-popup" data-aos="fade-up" data-aos-duration="400">
       <div class="login-popup-close">
         <round-button @click.native="close" type="CLOSE" />
       </div>

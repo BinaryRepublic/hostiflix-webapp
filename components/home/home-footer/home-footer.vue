@@ -1,7 +1,7 @@
 <template>
 
   <footer>
-    team@hostiflix.com — Copyright © 2019 HOSTIFLIX, Inc. All rights reserved.
+    team@hostiflix.com — Copyright © 2019 HOSTIFLIX, Inc. All f*cking rights reserved.
   </footer>
 
 </template>

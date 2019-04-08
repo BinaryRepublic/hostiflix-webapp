@@ -1,5 +1,4 @@
 <template>
-
   <div class="navBar" :class="{scroll100: scrollPosition > 40}">
     <div class="container">
       <div class="logo"></div>
@@ -10,7 +9,6 @@
       </div>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -19,21 +17,20 @@
     name: 'HomeNavbar',
     components: {
     },
-    data() {
+    data () {
       return {
         scrollPosition: false
       }
     },
     methods: {
-      updateScroll() {
+      updateScroll () {
         this.scrollPosition = window.scrollY
       }
     },
-    mounted() {
-      window.addEventListener('scroll', this.updateScroll);
+    mounted () {
+      window.addEventListener('scroll', this.updateScroll)
     }
-
-  };
+  }
 </script>
 
 <style lang="scss">

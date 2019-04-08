@@ -11,35 +11,43 @@
         </li>
       </ul>
     </div>
-    <nuxt-link to="/" class="logOut">
+    <div class="logOut" @click="logout">
       <span>Log out</span>
-      <img src="/img/layout/icon-logout.png"/></nuxt-link>
+      <img src="/img/layout/icon-logout.png"/>
+    </div>
   </div>
 </template>
 
 <script>
+const Cookie = process.client ? require('js-cookie') : undefined
 export default {
   components: {},
-  data() {
+  data () {
     return {
       projects: [
         {
-          name: 'Portfolio1',
+          name: 'Portfolio1'
         },
         {
-          name: 'Portfolio2',
+          name: 'Portfolio2'
         },
         {
-          name: 'Portfolio3',
-        },
+          name: 'Portfolio3'
+        }
       ]
     }
   },
-};
+  methods: {
+    logout () {
+      Cookie.remove('auth')
+      this.$store.commit('setAuth', null)
+      this.$router.push('/')
+    }
+  }
+}
 </script>
 
 <style lang="scss">
-
   .leftNavBar {
     top: 0;
     left: 0;
@@ -90,6 +98,7 @@ export default {
   .logOut {
     position: absolute;
     width: 100%;
+    cursor: pointer;
     display: block;
     bottom: 0;
     left: 0;

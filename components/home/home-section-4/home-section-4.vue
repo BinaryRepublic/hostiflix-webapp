@@ -34,15 +34,11 @@
 <script>
 
   export default {
-    name: 'HomeSection4',
-    components: {
-
-    },
-
-  };
+    name: 'HomeSection4'
+  }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   /*SECTION 4*/
   .section-4 {
     margin-bottom: 100px;

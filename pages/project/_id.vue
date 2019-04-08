@@ -19,10 +19,10 @@
 </template>
 
 <script>
-import { axiosRequest } from '../../assets/js/httpHelper';
-import roundButtonText from '../../components/_shared/roundButtonText';
-import BuildCard from '../../components/projects/buildCard';
-import DnsCard from '../../components/projects/dnsCard';
+import { axiosRequest } from '../../assets/js/httpHelper'
+import roundButtonText from '../../components/_shared/roundButtonText'
+import BuildCard from '../../components/projects/buildCard'
+import DnsCard from '../../components/projects/dnsCard'
 
 export default {
   components: {
@@ -33,18 +33,18 @@ export default {
   mounted () {
     if (process.browser) {
       if (!this.$store.state.auth) {
-        this.$router.push('/');
-        return;
+        this.$router.push('/')
+        return
       }
       axiosRequest(this.$store, {
         method: 'GET',
         url: '/projects'
       }).then(res => {
-        console.log('fetched projects: ', res.data);
-      });
+        console.log('fetched projects: ', res.data)
+      })
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

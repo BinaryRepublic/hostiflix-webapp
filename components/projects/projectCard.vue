@@ -7,42 +7,11 @@
         <div class="col-3">Domain</div>
       </div>
 
-      <nuxt-link class="row" to="/project/Tmkde3d">
-        <div class="col-1">master</div>
+      <nuxt-link class="row" to="/project/Tmkde3d" v-for="job in orderdJobs">
+        <div class="col-1">{{job.branch}}</div>
         <div class="col-2">20 sec ago</div>
         <div class="col-3">master-sd3.hostiflix.com</div>
       </nuxt-link>
-
-      <nuxt-link class="row" to="/project/Tmkde3d">
-        <div class="col-1">development</div>
-        <div class="col-2">1 min ago</div>
-        <div class="col-3">development-sd3.hostiflix.com</div>
-      </nuxt-link>
-
-      <nuxt-link class="row" to="/project/Tmkde3d">
-        <div class="col-1">development</div>
-        <div class="col-2">1 min ago</div>
-        <div class="col-3">development-sd3.hostiflix.com</div>
-      </nuxt-link>
-
-      <nuxt-link class="row" to="/project/Tmkde3d">
-        <div class="col-1">development</div>
-        <div class="col-2">1 min ago</div>
-        <div class="col-3">development-sd3.hostiflix.com</div>
-      </nuxt-link>
-
-      <nuxt-link class="row" to="/project/Tmkde3d">
-        <div class="col-1">development</div>
-        <div class="col-2">1 min ago</div>
-        <div class="col-3">development-sd3.hostiflix.com</div>
-      </nuxt-link>
-
-      <nuxt-link class="row" to="/project/Tmkde3d">
-        <div class="col-1">development</div>
-        <div class="col-2">1 min ago</div>
-        <div class="col-3">development-sd3.hostiflix.com</div>
-      </nuxt-link>
-
     </div>
     <div class="txt">
       <div class="txtContent">
@@ -61,6 +30,27 @@ export default {
   name: 'projectCard',
   props: {
     project: Object
+  },
+  computed: {
+    orderdJobs () {
+      return _.orderBy(this.jobs, ['finishedAt'], ['desc'])
+    }
+  },
+  data () {
+    return {
+      jobs: []
+    }
+  },
+  mounted () {
+    this.project.branches.forEach((element, index) => {
+      if (element.jobs) {
+        element.jobs.forEach((job, index) => {
+          job['branch'] = element.name
+          this.jobs.push(job)
+        })
+      }
+      console.log(this.jobs)
+    })
   }
 }
 </script>
@@ -76,7 +66,7 @@ export default {
 
   .table {
     font-size: 14px;
-    height: 67%;
+    height: 70%;
     background: #fff;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;

@@ -5,8 +5,8 @@
       <h2 data-aos="fade-left" data-aos-duration="600">My projects</h2>
       <h5 data-aos="fade-left" data-aos-delay="50" data-aos-duration="600">These are all of your projects running on hostiflix.</h5>
     </div>
-    <div class="projectCards">
-      <project-card data-aos="fade-up" v-for="project in projects" v-if="projects" :project="project"/>
+    <div class="projectCards" v-if="projects">
+      <project-card data-aos="fade-up" v-for="project in projects" :project="project" :key="project.id"/>
       <project-create-card data-aos="fade-up" data-aos-delay="50" @click.native="$store.commit('showSelectProjectType')"></project-create-card>
     </div>
   </section>
@@ -62,7 +62,7 @@ export default {
           branches: [
             {
               id: '234234-25345345',
-              name: 'master',
+              name: 'dev',
               subDomain: 'https://master.f3d.hostiflix.com',
               jobs: [
                 {
@@ -109,6 +109,7 @@ export default {
 
 <style lang="scss" scoped>
   .container {
+    max-width: 1920px;
     margin: 140px 20px 0 250px;
     padding: 0 0 0 50px;
   }
