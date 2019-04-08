@@ -40,11 +40,14 @@ export default {
     loginWithGithub () {
       axiosRequest(this.$store, {
         method: 'GET',
-        url: '/auth/login'
+        url: '/auth/login',
+        params: {
+          environment: process.env.NODE_ENV === 'development' ? 'DEVELOPMENT' : 'PRODUCTION'
+        }
       }, false).then(res => {
-        const githubRedirectUrl = res.data.redirectUrlGithub;
-        if (githubRedirectUrl) {
-          window.location = githubRedirectUrl;
+        const githubAuthorizeUrl = res.data.githubAuthorizeUrl;
+        if (githubAuthorizeUrl) {
+          window.location = githubAuthorizeUrl;
         } else {
           console.error('failed fetching Github authorize url');
         }
