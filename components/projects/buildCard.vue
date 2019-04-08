@@ -8,56 +8,47 @@
         <div class="col-3 ">Domain</div>
       </div>
 
-      <div class="row" to="/project/Tmkde3d">
-        <div class="col-0"><span class="green"></span>Running</div>
-        <div class="col-1">master</div>
-        <div class="col-2">20 sec ago</div>
-        <div class="col-3">master-sd3.hostiflix.com</div>
+      <div class="row" v-for="job in orderdJobs" :v-key="job.id">
+        <div class="col-0"><span class="green"></span>Complete</div>
+        <div class="col-1">{{job.branch}}</div>
+        <div class="col-2"><timeago :datetime="job.finishedAt" :auto-update="1"></timeago></div>
+        <div class="col-3"><a :href="job.subDomain" target="_blank">{{removeHTTP(job.subDomain)}}</a></div>
       </div>
-
-      <div class="row" to="/project/Tmkde3d">
-        <div class="col-0"><span class="green"></span>Running</div>
-        <div class="col-1">development</div>
-        <div class="col-2">1 min ago</div>
-        <div class="col-3">development-sd3.hostiflix.com</div>
-      </div>
-
-      <div class="row" to="/project/Tmkde3d">
-        <div class="col-0"><span class="green"></span>Running</div>
-        <div class="col-1">development</div>
-        <div class="col-2">1 min ago</div>
-        <div class="col-3">development-sd3.hostiflix.com</div>
-      </div>
-
-      <div class="row" to="/project/Tmkde3d">
-        <div class="col-0"><span class="green"></span>Running</div>
-        <div class="col-1">development</div>
-        <div class="col-2">1 min ago</div>
-        <div class="col-3">development-sd3.hostiflix.com</div>
-      </div>
-
-      <div class="row" to="/project/Tmkde3d">
-        <div class="col-0"><span class="green"></span>Running</div>
-        <div class="col-1">development</div>
-        <div class="col-2">1 min ago</div>
-        <div class="col-3">development-sd3.hostiflix.com</div>
-      </div>
-
-      <div class="row" to="/project/Tmkde3d">
-        <div class="col-0"><span class="green"></span>Running</div>
-        <div class="col-1">development</div>
-        <div class="col-2">1 min ago</div>
-        <div class="col-3">development-sd3.hostiflix.com</div>
-      </div>
-
     </div>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'buildCard'
-  };
+export default {
+  name: 'buildCard',
+  props: {
+    builds: Object
+  },
+  computed: {
+    orderdJobs () {
+      return _.orderBy(this.jobs, ['finishedAt'], ['desc'])
+    }
+  },
+  data () {
+    return {
+      jobs: []
+    }
+  },
+  mounted () {
+    this.builds.forEach((element, index) => {
+      if (element.jobs) {
+        element.jobs.forEach((job, index) => {
+          this.jobs.push(job)
+        })
+      }
+    })
+  },
+  methods: {
+    removeHTTP (url) {
+      return url.replace('https://', '')
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -77,6 +68,9 @@
     border-top-right-radius: 6px;
     border-bottom: 1px solid #D6DDFF;
     overflow-y: auto;
+  }
+  .table a {
+    color: $gray-light;
   }
 
   .table .titleTable {

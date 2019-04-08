@@ -5,8 +5,8 @@
       <h2 data-aos="fade-left" data-aos-duration="600">My projects</h2>
       <h5 data-aos="fade-left" data-aos-delay="50" data-aos-duration="600">These are all of your projects running on hostiflix.</h5>
     </div>
-    <div class="projectCards" v-if="projects">
-      <project-card data-aos="fade-up" v-for="project in projects" :project="project" :key="project.id"/>
+    <div class="projectCards" v-if="this.$store.state.projects">
+      <project-card data-aos="fade-up" v-for="project in this.$store.state.projects" :project="project" :key="project.id"/>
       <project-create-card data-aos="fade-up" data-aos-delay="50" @click.native="$store.commit('showSelectProjectType')"></project-create-card>
     </div>
   </section>
@@ -24,85 +24,22 @@ export default {
   },
   data () {
     return {
-      projects: [
-        {
-          id: '345345-34534',
-          name: 'Hostiflix-Web',
-          branches: [
-            {
-              id: '234234-25345345',
-              name: 'master',
-              subDomain: 'https://master.3kd.hostiflix.com',
-              jobs: [
-                {
-                  id: '243234-234234',
-                  status: 'DEPLOYMENT_SUCCESSFUL',
-                  createdAt: '2019-04-04T15:09:01.311Z',
-                  finishedAt: '2019-04-04T15:09:25.311Z'
-                },
-                {
-                  id: '242334-234234',
-                  status: 'DEPLOYMENT_SUCCESSFUL',
-                  createdAt: '2019-03-04T15:09:01.311Z',
-                  finishedAt: '2019-03-04T15:09:25.311Z'
-                },
-                {
-                  id: '242334-234234',
-                  status: 'DEPLOYMENT_SUCCESSFUL',
-                  createdAt: '2019-04-02T15:09:01.311Z',
-                  finishedAt: '2019-04-02T15:09:25.311Z'
-                }
-              ]
-            }
-          ]
-        },
-        {
-          id: '3453435-34534',
-          name: 'Hostiflix-APP',
-          branches: [
-            {
-              id: '234234-25345345',
-              name: 'dev',
-              subDomain: 'https://master.f3d.hostiflix.com',
-              jobs: [
-                {
-                  id: '243234-234234',
-                  status: 'DEPLOYMENT_SUCCESSFUL',
-                  createdAt: '2019-04-04T15:09:01.311Z',
-                  finishedAt: '2019-04-04T15:09:25.311Z'
-                },
-                {
-                  id: '242334-234234',
-                  status: 'DEPLOYMENT_SUCCESSFUL',
-                  createdAt: '2019-03-04T15:09:01.311Z',
-                  finishedAt: '2019-03-04T15:09:25.311Z'
-                },
-                {
-                  id: '242334-234234',
-                  status: 'DEPLOYMENT_SUCCESSFUL',
-                  createdAt: '2019-04-02T15:09:01.311Z',
-                  finishedAt: '2019-04-02T15:09:25.311Z'
-                }
-              ]
-            }
-          ]
-        }
-      ]
+      projects: []
     }
   },
   mounted () {
-    /* if (process.browser) {
+    if (process.browser) {
       if (!this.$store.state.auth) {
-        this.$router.push('/');
-        return;
+        // this.$router.push('/')
+        return
       }
       axiosRequest(this.$store, {
         method: 'GET',
         url: '/projects'
       }).then(res => {
         console.log('fetched projects: ', res.data);
-      });
-    } */
+      })
+    }
   }
 }
 </script>
@@ -136,7 +73,6 @@ export default {
     -ms-transition: 0.3s ease-out;
     -o-transition: 0.3s ease-out;
     transition: 0.3s ease-out;
-    cursor: pointer;
   }
   .projectCards > a:hover {
     box-shadow: 0 2px 30px rgba(71, 105, 255, 0.101591);

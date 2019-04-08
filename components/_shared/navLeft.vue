@@ -3,8 +3,8 @@
     <div class="projectsList">
       <h4><nuxt-link to="dashboard">My Projects</nuxt-link></h4>
       <ul>
-        <li v-for="project in projects">
-          <nuxt-link to="/project/Tmkde3d">{{project.name}}</nuxt-link>
+        <li v-for="project in $store.state.projects" :key="project.id">
+          <nuxt-link :to="'/project/' + project.id">{{project.name}}</nuxt-link>
         </li>
         <li>
           <span @click="$store.commit('showSelectProjectType')">+ Create a new project</span>
@@ -21,22 +21,6 @@
 <script>
 const Cookie = process.client ? require('js-cookie') : undefined
 export default {
-  components: {},
-  data () {
-    return {
-      projects: [
-        {
-          name: 'Portfolio1'
-        },
-        {
-          name: 'Portfolio2'
-        },
-        {
-          name: 'Portfolio3'
-        }
-      ]
-    }
-  },
   methods: {
     logout () {
       Cookie.remove('auth')

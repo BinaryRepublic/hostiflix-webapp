@@ -33,7 +33,7 @@
 <style lang="scss">
   /*SECTION 1*/
   .section-1 {
-    margin-bottom: 40px;
+    padding-bottom: 40px;
     padding-top: 80px;
     background: #fff;
   }

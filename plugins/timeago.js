@@ -1,8 +1,7 @@
-import TimeAgo from 'vue2-timeago'
+import Vue from 'vue'
+import VueTimeago from 'vue-timeago'
 
-export default {
-  name: 'app',
-  components: {
-    TimeAgo
-  }
-}
+Vue.use(VueTimeago, {
+  name: 'Timeago', // Component name, `Timeago` by default
+  locale: 'en'
+})

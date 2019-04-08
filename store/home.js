@@ -9,4 +9,4 @@ export const mutations = {
   closeLoginPopup (state) {
     state.showLoginPopup = false
   }
-};
+}

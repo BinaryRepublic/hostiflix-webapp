@@ -39,7 +39,8 @@ module.exports = {
   */
   plugins: [
     { src: '~/plugins/aos', ssr: false },
-    { src: '~/plugins/tooltip', ssr: false }
+    { src: '~/plugins/tooltip', ssr: false },
+    { src: '~/plugins/timeago', ssr: false }
   ],
 
   /*

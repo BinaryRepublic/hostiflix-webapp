@@ -7,13 +7,13 @@
         <div class="col-3">Domain</div>
       </div>
 
-      <nuxt-link class="row" to="/project/Tmkde3d" v-for="job in orderdJobs">
+      <div class="row" v-for="job in orderdJobs" :key="job.id">
         <div class="col-1">{{job.branch}}</div>
-        <div class="col-2">20 sec ago</div>
-        <div class="col-3">master-sd3.hostiflix.com</div>
-      </nuxt-link>
+        <div class="col-2"><timeago :datetime="job.finishedAt" :auto-update="1"></timeago></div>
+        <div class="col-3"><a :href="job.subDomain" target="_blank">{{removeHTTP(job.subDomain)}}</a></div>
+      </div>
     </div>
-    <div class="txt">
+    <nuxt-link class="txt" :to="'/project/' + project.id">
       <div class="txtContent">
         <div class="projectTypeImg"></div>
         <div>
@@ -21,13 +21,15 @@
           <span>Created 3 minutes ago</span>
         </div>
       </div>
-    </div>
+    </nuxt-link>
   </a>
 </template>
 
 <script>
 export default {
   name: 'projectCard',
+  components: {
+  },
   props: {
     project: Object
   },
@@ -45,12 +47,15 @@ export default {
     this.project.branches.forEach((element, index) => {
       if (element.jobs) {
         element.jobs.forEach((job, index) => {
-          job['branch'] = element.name
           this.jobs.push(job)
         })
       }
-      console.log(this.jobs)
     })
+  },
+  methods: {
+    removeHTTP (url) {
+      return url.replace('https://', '')
+    }
   }
 }
 </script>
@@ -110,12 +115,16 @@ export default {
   .table .row .col-3 {
     width: 50%;
   }
+  .table a {
+    color: $gray-light;
+  }
 
   .projectCard .txt {
     height: 33%;
     display: flex;
     align-items: center;
     padding: 0 30px;
+    color: $gray-light;
   }
 
   .projectCard .txt h3 {

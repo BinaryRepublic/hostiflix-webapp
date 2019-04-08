@@ -1,25 +1,24 @@
 <template>
-  <section class="container">
+  <section class="container" v-if="project">
     <round-button-text :is-fixed="true" type="BACK" to="../dashboard" />
     <!--PROJECTS-->
     <div class="title">
-      <h2 data-aos="fade-left" data-aos-duration="600">portfolio-webapp</h2>
+      <h2 data-aos="fade-left" data-aos-duration="600">{{project.name}}</h2>
       <h5 data-aos="fade-left" data-aos-delay="50" data-aos-duration="600">Last updated 13 seconds ago</h5>
     </div>
     <div class="projectCards">
       <h3 data-aos="fade-up">Recent Builds</h3>
-      <build-card data-aos="fade-up"/>
+      <build-card data-aos="fade-up" :builds="project.branches"/>
       <h3 data-aos="fade-up">Use your own domain</h3>
       <div class="intro" data-aos="fade-up">
         If you want to use your own domain, you can add our subdomains (e.g. <b>master-sd3.hostiflix.com</b>) to your DNS table as CNAME. Therefore log in to your Domain Provider Admin Panel and navigate to your <b>DNS table</b>. Add another item of entry type <b>CNAME</b>. You have to replace example.com with your own domain or subdomain. Dependent on your Domain Provider it can take up to 24h to apply changes.
       </div>
-      <dns-card data-aos="fade-up"/>
+      <dns-card data-aos="fade-up" />
     </div>
   </section>
 </template>
 
 <script>
-import { axiosRequest } from '../../assets/js/httpHelper'
 import roundButtonText from '../../components/_shared/roundButtonText'
 import BuildCard from '../../components/projects/buildCard'
 import DnsCard from '../../components/projects/dnsCard'
@@ -30,18 +29,9 @@ export default {
     BuildCard,
     DnsCard
   },
-  mounted () {
-    if (process.browser) {
-      if (!this.$store.state.auth) {
-        this.$router.push('/')
-        return
-      }
-      axiosRequest(this.$store, {
-        method: 'GET',
-        url: '/projects'
-      }).then(res => {
-        console.log('fetched projects: ', res.data)
-      })
+  computed: {
+    project () {
+      return _.find(this.$store.state.projects, { id: this.$route.params.id })
     }
   }
 }
