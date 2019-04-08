@@ -60,7 +60,7 @@ export default {
 <style scoped lang="scss">
   .login {
     position: fixed;
-    z-index: 2;
+    z-index: 60;
     left: 0;
     top: 0;
     right: 0;
@@ -73,7 +73,7 @@ export default {
     .login-popup {
       position: relative;
       width: 90%;
-      max-width: 400px;
+      max-width: 370px;
       border: $border-blue-light;
       background-color: #fff;
       border-radius: 8px;
@@ -85,27 +85,27 @@ export default {
       }
 
       .login-popup-content {
-        margin: 45px;
+        margin: 40px 45px;
         display: flex;
         justify-content: space-between;
         flex-direction: column;
         text-align: left;
 
         .login-popup-content-logo {
-          width: 90px;
+          width: 80px;
           margin-bottom: 100px;
         }
 
         .login-popup-content-headline {
           color: $blue;
-          font-size: 40px;
+          font-size: 36px;
           font-weight: bold;
           margin-bottom: 10px;
         }
 
         .login-popup-content-description {
           margin-bottom: 40px;
-          font-size: 110%;
+          font-size: 100%;
           line-height: 130%;
         }
       }

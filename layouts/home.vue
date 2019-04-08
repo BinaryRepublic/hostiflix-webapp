@@ -10,3 +10,10 @@ export default {
   components: { Login }
 };
 </script>
+
+<style>
+  body {
+    background: #fff;
+  }
+
+</style>

@@ -33,9 +33,12 @@ export default {
     display: flex;
     background-color: $blue-lightest;
     overflow: hidden;
+    transition: .25s all ease-in-out;
 
     &:hover {
       cursor: pointer;
+      box-shadow: 0 7px 20px rgba(71, 105, 255, 0.20);
+      background-color: #fff;
     }
 
     .login-button-icon {
