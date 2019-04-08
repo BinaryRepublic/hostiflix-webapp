@@ -32,6 +32,10 @@ export default {
     box-sizing: border-box;
   }
 
+  body {
+    background: $blue-lightest;
+  }
+
   *,
   *:before,
   *:after {
