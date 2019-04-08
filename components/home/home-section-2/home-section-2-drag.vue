@@ -38,13 +38,12 @@
 
 <script>
 
-  export default {
-    name: 'SectionGithub',
-    components: {
+export default {
+  name: 'SectionGithub',
+  components: {
 
-    },
-
-  };
+  }
+}
 </script>
 
 <style lang="scss" >

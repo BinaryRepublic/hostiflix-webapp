@@ -6,7 +6,7 @@
           Launching <br>apps made easy
         </h1>
         <h2>
-          We enable you to launch any application on a server within 29 seconds, by killing any configuration overhead.
+          We enable you to launch any application on a server within seconds, by killing any configuration overhead.
         </h2>
         <button class="blueBtn" @click="$store.commit('home/openLoginPopup')">Get started</button>
       </div>

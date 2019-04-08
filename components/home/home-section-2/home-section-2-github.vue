@@ -42,8 +42,7 @@
     name: 'SectionGithub',
     components: {
 
-    },
-
+    }
   };
 </script>
 
