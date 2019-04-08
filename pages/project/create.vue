@@ -19,35 +19,26 @@
               <p>Select the GitHub repository that contains the projects source code.</p>
             </div>
           </div>
-          <div class="row">
+          <div class="row searchRow">
             <div class="col-left-sm">
             </div>
             <div class="col-100">
-              <input class="search" type="search" placeholder="search...">
+              <input class="search" type="search" placeholder="search..." v-model="searchQuery">
             </div>
           </div>
-          <div class="row">
+          <div class="row" v-for="repository in repositoriesSearch">
             <div class="col-left-sm">
-              <input type="radio" id="namerepository1" name="repository" value="1">
+              <input type="radio" name="repository" :id="repository.id" :value="repository.id" v-model="selectedRepo">
             </div>
             <div class="col-100">
-              <label for="namerepository1">portfolio-webapp</label>
+              <label :for="repository.id">{{repository.name}}</label>
             </div>
           </div>
-          <div class="row">
+          <div class="row" v-if="repositoriesSearch.length == 0">
             <div class="col-left-sm">
-              <input type="radio" id="namerepository2" name="repository" value="2">
             </div>
             <div class="col-100">
-              <label for="namerepository2">CodeUniversity/hostiflix-web-app</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-left-sm">
-              <input type="radio" id="namerepository3" name="repository" value="3">
-            </div>
-            <div class="col-100">
-              <label for="namerepository3">CodeUniversity/triangl-processing-pipeline</label>
+              <label><b>There is no repository matching your search</b></label>
             </div>
           </div>
         </div>
@@ -55,7 +46,7 @@
       <!--COMPONENT ENDS-->
 
       <!-- COMPONENT STARTS-->
-      <div class="component branchComponent">
+      <div class="component branchComponent" v-if="selectedRepo" data-aos="fade-up" data-aos-duration="600">
         <div class="title">
           <h4>Select GitHub branches</h4>
           <p>Whenever you push changes to your GitHub source branch we will automatically launch your application on a respective target domain.</p>
@@ -74,41 +65,22 @@
               <p>use it to access your app</p>
             </div>
           </div>
-          <div class="row">
+          <div class="row" v-for="branch in orderBranches">
             <div class="col-left-sm">
-              <input type="checkbox" id="namerepository4" name="repository" value="4">
+              <input type="checkbox" :id="branch.name" :value="branch.name" v-model="selectedBranches">
             </div>
             <div class="col-50">
-              <label for="namerepository4">Master</label>
+              <label :for="branch.name">{{branch.name}}</label>
             </div>
             <div class="col-50">
-              <p class="targetSub">https://master-sd3.hostiflix.com</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-left-sm">
-              <input type="checkbox" id="namerepository5" name="repository" value="5">
-            </div>
-            <div class="col-50">
-              <label for="namerepository5">development</label>
-            </div>
-            <div class="col-50">
-              <p class="targetSub">https://development-sd3.hostiflix.com</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-left-sm">
-              <input type="checkbox" id="namerepository6" name="repository" value="6">
-            </div>
-            <div class="col-50">
-              <label for="namerepository6">type other branch</label>
+              <p class="targetSub"><span @click="copy(branch.url)" @mouseenter="copyHover" v-tooltip="{ content: copyContent.text, trigger: 'hover click', delay: {hide: copyContent.delay}, hideOnTargetClick: false }">{{branch.url}} <span class="copy"></span></span></p>
             </div>
           </div>
         </div>
       </div>
       <!--COMPONENT ENDS-->
-      <div class="component saveBtn">
-        <button class="blueBtn" type="submit" value="Submit">Launch your app</button>
+      <div class="component saveBtn" :class="{'disabled': selectedBranches.length === 0}">
+        <button class="blueBtn" type="submit" value="Submit" @click="createProject">Launch your app</button>
         <p class="txt-center">Your application will be deployed on our servers and we will start listening to changes in your GitHub repository. Whenever you will push changes to your specified branches we will re-deploy using your latest code.</p>
       </div>
 
@@ -118,8 +90,129 @@
 
 <script>
 export default {
-  layout: 'createProject'
-};
+  layout: 'createProject',
+  data () {
+    return {
+      projectHash: 'k24',
+      repositories: [
+        {
+          id: '234-324-2341',
+          name: 'lukas-vollmer/test-project',
+          defaultBranch: 'master'
+        },
+        {
+          id: '234-324-2342',
+          name: 'lukas-vollmer/fun-project',
+          defaultBranch: 'master'
+        },
+        {
+          id: '234-324-2343',
+          name: 'lukas-vollmer/nice-project',
+          defaultBranch: 'master'
+        },
+        {
+          id: '234-324-2344',
+          name: 'lukas-vollmer/crazy-project',
+          defaultBranch: 'master'
+        },
+        {
+          id: '234-324-2345',
+          name: 'lukas-vollmer/fancy-project',
+          defaultBranch: 'master'
+        },
+        {
+          id: '234-324-2346',
+          name: 'lukas-vollmer/ai-project',
+          defaultBranch: 'master'
+        }
+      ],
+      repositoriesSearch: [],
+      searchQuery: '',
+      selectedRepo: null,
+      branches: [],
+      selectedBranches: [],
+      copyContent: {
+        text: 'Copy to clipboard',
+        delay: 0
+      }
+    }
+  },
+  computed: {
+    orderBranches () {
+      return _.orderBy(this.branches, ['default', 'name'], ['desc', 'asc'])
+    }
+  },
+  mounted () {
+    // TODO: GET projectHast
+    // TODO: GET project Repositories
+    this.repositoriesSearch = this.repositories
+  },
+  watch: {
+    selectedRepo (val) {
+      if (val.length > 0) {
+        this.getBranches()
+      }
+    },
+    searchQuery (val) {
+      if (val.length > 1) {
+        this.repositoriesSearch = []
+        this.repositories.forEach((element) => {
+          if (element.name.includes(val)) {
+            this.repositoriesSearch.push(element)
+          }
+        })
+      } else {
+        this.repositoriesSearch = this.repositories
+      }
+    }
+  },
+  methods: {
+    getBranches () {
+      // TODO: GET BRANCHES
+      let branches = [
+        {
+          name: 'master'
+        },
+        {
+          name: 'dev'
+        },
+        {
+          name: 'feature-1'
+        }
+      ]
+      branches.forEach((element, index) => {
+        let repository = _.find(this.repositories, { id: this.selectedRepo })
+        if (element.name === repository.defaultBranch) {
+          branches[index]['default'] = 1
+          this.selectedBranches.push(element.name)
+        } else {
+          branches[index]['default'] = 0
+        }
+        branches[index]['url'] = 'https://' + this.friendlyUrl(element.name) + '.' + this.projectHash + '.hostiflix.com'
+      })
+      this.branches = branches
+    },
+    createProject () {
+      // TODO: SEND TO API
+    },
+    friendlyUrl (value) {
+      return value === undefined ? '' : value.replace(/[^a-z0-9_]+/gi, '-').replace(/^-|-$/g, '').toLowerCase()
+    },
+    copy (value) {
+      this.$copyText(value)
+      this.copyContent.text = 'Copied!'
+      this.copyContent.delay = 900
+      setTimeout(() => {
+        this.copyContent.text = 'Copy to clipboard'
+        this.copyContent.delay = 0
+      }, 1400)
+    },
+    copyHover () {
+      this.copyContent.text = 'Copy to clipboard'
+      this.copyContent.delay = 0
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -174,6 +267,12 @@ export default {
     margin-bottom: 15px;
     align-items: center;
   }
+  .box .row.searchRow {
+    margin-bottom: 25px;
+  }
+  .box .row label {
+    cursor: pointer;
+  }
   .box .col-left-sm {
     width: 20%;
     max-width: 75px;
@@ -204,11 +303,28 @@ export default {
   .m-b-25 {
     margin-bottom: 25px!important;
   }
+  .saveBtn.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+  }
   .saveBtn p{
     padding: 20px 0 0;
   }
   .txt-center {
     text-align: center;
+  }
+
+  .copy{
+    cursor: pointer;
+    display: inline-block;
+    margin-left: 5px;
+    margin-top: 1px;
+    width: 14px;
+    height: 17px;
+    background-image: url(~assets/img/layout/copy.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: bottom;
   }
 
   /*branchComponent*/
@@ -217,6 +333,7 @@ export default {
   }
   .branchComponent p.targetSub {
     color: $blue;
+    cursor: pointer;
     position: relative;
   }
   .branchComponent p.targetSub:before {
@@ -244,6 +361,15 @@ export default {
     font-weight: 900;
     cursor: pointer;
     outline: none;
+    box-shadow: 0 10px 20px rgba(71, 105, 255, 0);
+    transition: all 0.4s;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  .blueBtn:hover{
+    margin-top: -1px;
+    box-shadow: 0 10px 20px rgba(71, 105, 255, 0.3);
+    margin-bottom: 1px;
   }
 
 </style>

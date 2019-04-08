@@ -1,5 +1,5 @@
-const pkg = require('./package');
-
+import webpack from 'webpack'
+const pkg = require('./package')
 
 module.exports = {
   mode: 'universal',
@@ -12,7 +12,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: pkg.name,
+    title: 'Hostiflix',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -38,13 +38,17 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '~/plugins/aos', ssr: false }
+    { src: '~/plugins/aos', ssr: false },
+    { src: '~/plugins/tooltip', ssr: false }
   ],
 
   /*
   ** Nuxt.js modules
   */
-  modules: ['@nuxtjs/style-resources'],
+  modules: [
+    '@nuxtjs/style-resources',
+    'nuxt-clipboard2'
+  ],
   styleResources: {
     scss: [
       'assets/style/global.scss'
@@ -58,8 +62,13 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
-    extend(config, ctx) {
+    extend (config, ctx) {
 
-    }
+    },
+    plugins: [
+      new webpack.ProvidePlugin({
+        '_': 'lodash'
+      })
+    ]
   }
 }

@@ -48,7 +48,7 @@
       <div class="txtContent">
         <div class="projectTypeImg"></div>
         <div>
-          <h3 class="mainBlue">portfolio-webapp</h3>
+          <h3 class="mainBlue">{{project.name}}</h3>
           <span>Created 3 minutes ago</span>
         </div>
       </div>
@@ -57,9 +57,12 @@
 </template>
 
 <script>
-  export default {
-    name: 'projectCard'
-  };
+export default {
+  name: 'projectCard',
+  props: {
+    project: Object
+  }
+}
 </script>
 
 <style lang="scss" scoped>

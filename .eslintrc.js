@@ -20,7 +20,7 @@ module.exports = {
   // add your custom rules here
   rules: {
     'indent': ['error', 2],
-    'semi': ['error', 'always'],
+    'semi': ['error', 'never'],
     'no-trailing-spaces': ['error', { 'skipBlankLines': true }],
     allowEmptyReject: true
   }
