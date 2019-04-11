@@ -13,11 +13,12 @@
 <script>
 export default {
   name: 'projectCreateCard'
-};
+}
 </script>
 
 <style lang="scss" scoped>
   .createProjectCard{
+    cursor: pointer;
     background: #FFFFFF;
     border: $border-blue-light;
     box-sizing: border-box;

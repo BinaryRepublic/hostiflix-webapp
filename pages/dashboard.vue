@@ -30,15 +30,8 @@ export default {
   mounted () {
     if (process.browser) {
       if (!this.$store.state.auth) {
-        // this.$router.push('/')
-        return
+        this.$router.push('/')
       }
-      axiosRequest(this.$store, {
-        method: 'GET',
-        url: '/projects'
-      }).then(res => {
-        console.log('fetched projects: ', res.data);
-      })
     }
   }
 }

@@ -7,39 +7,45 @@
         <div class="col-3 ">Value</div>
       </div>
 
-      <div class="row">
+      <div class="row" v-for="branch in branches">
         <div class="col-1">CNAME</div>
         <div class="col-2">example.com</div>
-        <div class="col-3">master-sd3.hostiflix.com <span class="copy"></span></div>
-      </div>
-      <div class="row">
-        <div class="col-1">CNAME</div>
-        <div class="col-2">example.com</div>
-        <div class="col-3">master-sd3.hostiflix.com <span class="copy"></span></div>
-      </div>
-      <div class="row">
-        <div class="col-1">CNAME</div>
-        <div class="col-2">example.com</div>
-        <div class="col-3">master-sd3.hostiflix.com <span class="copy"></span></div>
-      </div>
-      <div class="row">
-        <div class="col-1">CNAME</div>
-        <div class="col-2">example.com</div>
-        <div class="col-3">master-sd3.hostiflix.com <span class="copy"></span></div>
-      </div>
-      <div class="row">
-        <div class="col-1">CNAME</div>
-        <div class="col-2">example.com</div>
-        <div class="col-3">master-sd3.hostiflix.com <span class="copy"></span></div>
+        <div class="col-3"><span @click="copy(branch.subDomain)" @mouseenter="copyHover" v-tooltip="{ content: copyContent.text, trigger: 'hover click', delay: {hide: copyContent.delay}, hideOnTargetClick: false }">{{branch.subDomain}} <span class="copy"></span></span></div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'dnsCard'
-  };
+export default {
+  name: 'dnsCard',
+  props: {
+    branches: Array
+  },
+  data () {
+    return {
+      copyContent: {
+        text: 'Copy to clipboard',
+        delay: 0
+      }
+    }
+  },
+  methods: {
+    copy (value) {
+      this.$copyText(value)
+      this.copyContent.text = 'Copied!'
+      this.copyContent.delay = 900
+      setTimeout(() => {
+        this.copyContent.text = 'Copy to clipboard'
+        this.copyContent.delay = 0
+      }, 1400)
+    },
+    copyHover () {
+      this.copyContent.text = 'Copy to clipboard'
+      this.copyContent.delay = 0
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -110,6 +116,9 @@
   .table .row .col-3 {
     width: 50%;
     font-weight: bold;
+  }
+  .table .row .col-3 span {
+    cursor: pointer;
   }
 
   .table::-webkit-scrollbar-track {

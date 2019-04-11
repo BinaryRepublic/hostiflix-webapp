@@ -13,7 +13,7 @@
       <div class="intro" data-aos="fade-up">
         If you want to use your own domain, you can add our subdomains (e.g. <b>master-sd3.hostiflix.com</b>) to your DNS table as CNAME. Therefore log in to your Domain Provider Admin Panel and navigate to your <b>DNS table</b>. Add another item of entry type <b>CNAME</b>. You have to replace example.com with your own domain or subdomain. Dependent on your Domain Provider it can take up to 24h to apply changes.
       </div>
-      <dns-card data-aos="fade-up" />
+      <dns-card data-aos="fade-up" :branches="project.branches" />
     </div>
   </section>
 </template>

@@ -6,11 +6,15 @@
         <div class="col-2">Updated</div>
         <div class="col-3">Domain</div>
       </div>
-
       <div class="row" v-for="job in orderdJobs" :key="job.id">
         <div class="col-1">{{job.branch}}</div>
         <div class="col-2"><timeago :datetime="job.finishedAt" :auto-update="1"></timeago></div>
         <div class="col-3"><a :href="job.subDomain" target="_blank">{{removeHTTP(job.subDomain)}}</a></div>
+      </div>
+      <div class="row" v-if="!this.project.branches">
+        <div class="col-1">There are no jobs yet.</div>
+        <div class="col-2"></div>
+        <div class="col-3"></div>
       </div>
     </div>
     <nuxt-link class="txt" :to="'/project/' + project.id">
@@ -18,7 +22,7 @@
         <div class="projectTypeImg"></div>
         <div>
           <h3 class="mainBlue">{{project.name}}</h3>
-          <span>Created 3 minutes ago</span>
+          <span><timeago :datetime="project.createdAt" :auto-update="1"></timeago></span>
         </div>
       </div>
     </nuxt-link>
@@ -44,13 +48,15 @@ export default {
     }
   },
   mounted () {
-    this.project.branches.forEach((element, index) => {
-      if (element.jobs) {
-        element.jobs.forEach((job, index) => {
-          this.jobs.push(job)
-        })
-      }
-    })
+    if (this.project.branches) {
+      this.project.branches.forEach((element, index) => {
+        if (element.jobs) {
+          element.jobs.forEach((job, index) => {
+            this.jobs.push(job)
+          })
+        }
+      })
+    }
   },
   methods: {
     removeHTTP (url) {

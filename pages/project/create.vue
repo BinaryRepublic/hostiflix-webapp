@@ -23,15 +23,17 @@
             <div class="col-left-sm">
             </div>
             <div class="col-100">
-              <input class="search" type="search" placeholder="search..." v-model="searchQuery">
+              <input ref="search" class="search" type="search" placeholder="search..." v-model="searchQuery">
             </div>
           </div>
-          <div class="row" v-for="repository in repositoriesSearch">
-            <div class="col-left-sm">
-              <input type="radio" name="repository" :id="repository.id" :value="repository.id" v-model="selectedRepo">
-            </div>
-            <div class="col-100">
-              <label :for="repository.id">{{repository.name}}</label>
+          <div class="repos">
+            <div class="row" v-for="repository in repositoriesSearch">
+              <div class="col-left-sm">
+                <input type="radio" name="repository" :id="repository.id" :value="repository.id" v-model="selectedRepo">
+              </div>
+              <div class="col-100">
+                <label :for="repository.id">{{repository.fullName}}</label>
+              </div>
             </div>
           </div>
           <div class="row" v-if="repositoriesSearch.length == 0">
@@ -73,7 +75,7 @@
               <label :for="branch.name">{{branch.name}}</label>
             </div>
             <div class="col-50">
-              <p class="targetSub"><span @click="copy(branch.url)" @mouseenter="copyHover" v-tooltip="{ content: copyContent.text, trigger: 'hover click', delay: {hide: copyContent.delay}, hideOnTargetClick: false }">{{branch.url}} <span class="copy"></span></span></p>
+              <p class="targetSub"><span @click="copy(branch.subDomain)" @mouseenter="copyHover" v-tooltip="{ content: copyContent.text, trigger: 'hover click', delay: {hide: copyContent.delay}, hideOnTargetClick: false }">{{branch.subDomain}} <span class="copy"></span></span></p>
             </div>
           </div>
         </div>
@@ -89,43 +91,13 @@
 </template>
 
 <script>
+import { axiosRequest } from '../../assets/js/httpHelper'
 export default {
   layout: 'createProject',
   data () {
     return {
-      projectHash: 'k24',
-      repositories: [
-        {
-          id: '234-324-2341',
-          name: 'lukas-vollmer/test-project',
-          defaultBranch: 'master'
-        },
-        {
-          id: '234-324-2342',
-          name: 'lukas-vollmer/fun-project',
-          defaultBranch: 'master'
-        },
-        {
-          id: '234-324-2343',
-          name: 'lukas-vollmer/nice-project',
-          defaultBranch: 'master'
-        },
-        {
-          id: '234-324-2344',
-          name: 'lukas-vollmer/crazy-project',
-          defaultBranch: 'master'
-        },
-        {
-          id: '234-324-2345',
-          name: 'lukas-vollmer/fancy-project',
-          defaultBranch: 'master'
-        },
-        {
-          id: '234-324-2346',
-          name: 'lukas-vollmer/ai-project',
-          defaultBranch: 'master'
-        }
-      ],
+      projectHash: '',
+      repositories: [],
       repositoriesSearch: [],
       searchQuery: '',
       selectedRepo: null,
@@ -143,24 +115,39 @@ export default {
     }
   },
   mounted () {
-    // TODO: GET projectHast
-    // TODO: GET project Repositories
-    this.repositoriesSearch = this.repositories
+    this.$nextTick(() => this.$refs.search.focus())
+    axiosRequest(this.$store, {
+      method: 'GET',
+      url: '/projects/hash'
+    }).then(res => {
+      this.projectHash = res.data.hash
+    })
+    axiosRequest(this.$store, {
+      method: 'GET',
+      url: '/github/repos'
+    }).then(res => {
+      this.repositories = res.data.repos
+      this.repositoriesSearch = this.repositories
+    })
   },
   watch: {
     selectedRepo (val) {
       if (val.length > 0) {
         this.getBranches()
+        this.selectedBranches = []
       }
     },
     searchQuery (val) {
       if (val.length > 1) {
         this.repositoriesSearch = []
         this.repositories.forEach((element) => {
-          if (element.name.includes(val)) {
+          if (element.fullName.includes(val) || element.fullName.toLowerCase().includes(val.toLowerCase())) {
             this.repositoriesSearch.push(element)
           }
         })
+        if (this.repositoriesSearch.length === 1) {
+          this.selectedRepo = this.repositoriesSearch[0].id
+        }
       } else {
         this.repositoriesSearch = this.repositories
       }
@@ -168,32 +155,52 @@ export default {
   },
   methods: {
     getBranches () {
-      // TODO: GET BRANCHES
-      let branches = [
-        {
-          name: 'master'
-        },
-        {
-          name: 'dev'
-        },
-        {
-          name: 'feature-1'
-        }
-      ]
-      branches.forEach((element, index) => {
-        let repository = _.find(this.repositories, { id: this.selectedRepo })
-        if (element.name === repository.defaultBranch) {
-          branches[index]['default'] = 1
-          this.selectedBranches.push(element.name)
-        } else {
-          branches[index]['default'] = 0
-        }
-        branches[index]['url'] = 'https://' + this.friendlyUrl(element.name) + '.' + this.projectHash + '.hostiflix.com'
+      let repository = _.find(this.repositories, { id: this.selectedRepo })
+      axiosRequest(this.$store, {
+        method: 'GET',
+        url: '/github/repos/' + repository.fullName + '/branches'
+      }).then(res => {
+        let branches = res.data.branches
+        branches.forEach((element, index) => {
+          let repository = _.find(this.repositories, { id: this.selectedRepo })
+          if (element.name === repository.defaultBranch) {
+            branches[index]['default'] = 1
+            this.selectedBranches.push(element.name)
+          } else {
+            branches[index]['default'] = 0
+          }
+          branches[index]['subDomain'] = this.friendlyUrl(element.name) + '.' + this.projectHash + '.hostiflix.com'
+        })
+        this.branches = branches
       })
-      this.branches = branches
     },
     createProject () {
-      // TODO: SEND TO API
+      let repository = _.find(this.repositories, { id: this.selectedRepo })
+      let branches = []
+      this.selectedBranches.forEach((element, index) => {
+        let branch = _.find(this.branches, { name: element })
+        let pushBranch = []
+        pushBranch['name'] = element
+        pushBranch['subDomain'] = branch.subDomain
+        branches.push(pushBranch)
+      })
+      console.log(branches)
+      axiosRequest(this.$store, {
+        method: 'POST',
+        url: '/projects',
+        data: {
+          hash: this.projectHash,
+          name: repository.fullName,
+          type: 'NODEJS',
+          buildCode: 'npm install',
+          startCode: 'npm run start',
+          repositoryOwner: repository.owner,
+          repositoryName: repository.fullName,
+          branches
+        }
+      }).then(res => {
+
+      })
     },
     friendlyUrl (value) {
       return value === undefined ? '' : value.replace(/[^a-z0-9_]+/gi, '-').replace(/^-|-$/g, '').toLowerCase()
@@ -261,6 +268,10 @@ export default {
   .box h2{
     font-size: 16px;
     margin-bottom: 2px;
+  }
+  .box .repos {
+    max-height: 300px;
+    overflow: auto;
   }
   .box .row {
     display: flex;

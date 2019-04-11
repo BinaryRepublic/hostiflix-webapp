@@ -7,12 +7,17 @@
         <div class="col-2">Updated</div>
         <div class="col-3 ">Domain</div>
       </div>
-
       <div class="row" v-for="job in orderdJobs" :v-key="job.id">
         <div class="col-0"><span class="green"></span>Complete</div>
         <div class="col-1">{{job.branch}}</div>
         <div class="col-2"><timeago :datetime="job.finishedAt" :auto-update="1"></timeago></div>
-        <div class="col-3"><a :href="job.subDomain" target="_blank">{{removeHTTP(job.subDomain)}}</a></div>
+        <div class="col-3"><a :href="'https://' + job.subDomain" target="_blank">{{removeHTTP(job.subDomain)}}</a></div>
+      </div>
+      <div class="row" v-if="!builds">
+        <div class="col-0">There are no jobs yet.</div>
+        <div class="col-1"></div>
+        <div class="col-2"></div>
+        <div class="col-3"></div>
       </div>
     </div>
   </div>
@@ -22,7 +27,7 @@
 export default {
   name: 'buildCard',
   props: {
-    builds: Object
+    builds: Array
   },
   computed: {
     orderdJobs () {
@@ -35,13 +40,15 @@ export default {
     }
   },
   mounted () {
-    this.builds.forEach((element, index) => {
-      if (element.jobs) {
-        element.jobs.forEach((job, index) => {
-          this.jobs.push(job)
-        })
-      }
-    })
+    if (this.builds) {
+      this.builds.forEach((element, index) => {
+        if (element.jobs) {
+          element.jobs.forEach((job, index) => {
+            this.jobs.push(job)
+          })
+        }
+      })
+    }
   },
   methods: {
     removeHTTP (url) {
