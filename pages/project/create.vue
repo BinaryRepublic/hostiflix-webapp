@@ -78,7 +78,7 @@
               <label :for="branch.name">{{branch.name}}</label>
             </div>
             <div class="col-50">
-              <p class="targetSub"><span @click="copy(branch.subDomain)" @mouseenter="copyHover" v-tooltip="{ content: copyContent.text, trigger: 'hover click', delay: {hide: copyContent.delay}, hideOnTargetClick: false }">{{branch.subDomain}} <span class="copy"></span></span></p>
+              <p class="targetSub"><span @click="copy(branch.subDomain + '.hostiflix.com')" @mouseenter="copyHover" v-tooltip="{ content: copyContent.text, trigger: 'hover click', delay: {hide: copyContent.delay}, hideOnTargetClick: false }">{{branch.subDomain}}.hostiflix.com <span class="copy"></span></span></p>
             </div>
           </div>
         </div>
@@ -193,7 +193,7 @@ export default {
           } else {
             branches[index]['default'] = 0
           }
-          branches[index]['subDomain'] = this.friendlyUrl(element.name) + '.' + this.projectHash + '.hostiflix.com'
+          branches[index]['subDomain'] = this.friendlyUrl(element.name) + '.' + this.projectHash
         })
         this.branches = branches
       })
@@ -203,24 +203,27 @@ export default {
       let branches = []
       this.selectedBranches.forEach((element, index) => {
         let branch = _.find(this.branches, { name: element })
-        let pushBranch = []
-        pushBranch['name'] = element
-        pushBranch['subDomain'] = branch.subDomain
-        branches.push(pushBranch)
+        branches.push({
+          name: element,
+          subDomain: branch.subDomain
+        })
       })
       axiosRequest(this.$store, {
         method: 'POST',
+        headers: {
+          'content-type': 'application/json'
+        },
         url: '/projects',
-        data: {
+        data: JSON.stringify({
           hash: this.projectHash,
-          name: repository.fullName,
+          name: repository.fullName.split('/')[1],
           type: 'NODEJS',
           buildCode: 'npm install',
           startCode: 'npm run start',
           repositoryOwner: repository.owner,
-          repositoryName: repository.fullName,
+          repositoryName: repository.fullName.split('/')[1],
           branches
-        }
+        })
       }).then(res => {
 
       })

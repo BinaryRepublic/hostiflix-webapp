@@ -2,7 +2,7 @@
   <div class="center">
     <div class="logo" data-aos="fade-down"></div>
     <br/>
-    <br/>logo
+    <br/>
     <div data-aos="fade-up">Loading Data. From the cloud.</div>
   </div>
 </template>
