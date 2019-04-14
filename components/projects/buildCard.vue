@@ -17,7 +17,7 @@
         <div class="col-2"><timeago :datetime="job.finishedAt" :auto-update="1"></timeago></div>
         <div class="col-3"><a :href="'https://' + job.subDomain" target="_blank">{{removeHTTP(job.subDomain)}}</a></div>
       </div>
-      <div class="row" v-if="!builds">
+      <div class="row" v-if="jobs.length === 0">
         <div class="col-0">There are no jobs yet.</div>
         <div class="col-1"></div>
         <div class="col-2"></div>

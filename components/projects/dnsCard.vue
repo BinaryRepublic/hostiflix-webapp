@@ -12,6 +12,11 @@
         <div class="col-2">example.com</div>
         <div class="col-3"><span @click="copy(branch.subDomain)" @mouseenter="copyHover" v-tooltip="{ content: copyContent.text, trigger: 'hover click', delay: {hide: copyContent.delay}, hideOnTargetClick: false }">{{branch.subDomain}} <span class="copy"></span></span></div>
       </div>
+      <div class="row" v-if="!branches">
+        <div class="col-0">There are no branches yet.</div>
+        <div class="col-2"></div>
+        <div class="col-3"></div>
+      </div>
     </div>
   </div>
 </template>

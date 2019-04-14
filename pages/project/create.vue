@@ -225,7 +225,29 @@ export default {
           branches
         })
       }).then(res => {
-
+        if (res.data.id) {
+          axiosRequest(this.$store, {
+            method: 'GET',
+            url: '/projects'
+          }).then(resD => {
+            let projects = resD.data.projects
+            console.log(projects)
+            projects.forEach((project, pindex) => {
+              if (project.branches) {
+                project.branches.forEach((branch, bindex) => {
+                  if (branch.jobs) {
+                    branch.jobs.forEach((job, jindex) => {
+                      projects[pindex].branches[bindex].jobs[jindex]['branch'] = branch.name
+                      projects[pindex].branches[bindex].jobs[jindex]['subDomain'] = branch.subDomain
+                    })
+                  }
+                })
+              }
+            })
+            this.$store.commit('setProjects', projects)
+            this.$router.push('/project/' + res.data.id)
+          })
+        }
       })
     },
     friendlyUrl (value) {
