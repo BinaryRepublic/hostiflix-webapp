@@ -19,24 +19,27 @@
               <p>Select the GitHub repository that contains the projects source code.</p>
             </div>
           </div>
-          <div class="row searchRow">
+          <div class="row searchRow" v-if="repositories.length > 0">
             <div class="col-left-sm">
             </div>
-            <div class="col-100">
+            <div class="col-100" v-if="!selectedRepo">
               <input ref="search" class="search" type="search" placeholder="search..." v-model="searchQuery">
             </div>
           </div>
           <div class="repos">
-            <div class="row" v-for="repository in repositoriesSearch">
-              <div class="col-left-sm">
-                <input type="radio" name="repository" :id="repository.id" :value="repository.id" v-model="selectedRepo">
+            <div class="loading" v-if="repositories.length === 0"></div>
+            <div class="row" :class="{'selected': repository.id === selectedRepo }" v-for="repository in repositoriesSearch">
+              <div class="col-left-sm" @click="selectRepo(repository.id)">
+                <div class="select" v-if="repository.id === selectedRepo">SELECTED</div>
+                <div class="select" v-if="repository.id !== selectedRepo">SELECT</div>
               </div>
               <div class="col-100">
-                <label :for="repository.id">{{repository.fullName}}</label>
+                <label :for="repository.id" @click="selectRepo(repository.id)">{{repository.fullName}}</label>
+                <div class="remove" v-if="repository.id === selectedRepo" @click="removeRepo()">x</div>
               </div>
             </div>
           </div>
-          <div class="row" v-if="repositoriesSearch.length == 0">
+          <div class="row" v-if="repositories.length !== 0 && repositoriesSearch.length == 0">
             <div class="col-left-sm">
             </div>
             <div class="col-100">
@@ -115,7 +118,11 @@ export default {
     }
   },
   mounted () {
-    this.$nextTick(() => this.$refs.search.focus())
+    document.addEventListener('keyup', (evt) => {
+      if (evt.keyCode === 27) {
+        this.removeRepo()
+      }
+    })
     axiosRequest(this.$store, {
       method: 'GET',
       url: '/projects/hash'
@@ -128,11 +135,12 @@ export default {
     }).then(res => {
       this.repositories = res.data.repos
       this.repositoriesSearch = this.repositories
+      this.$nextTick(() => this.$refs.search.focus())
     })
   },
   watch: {
     selectedRepo (val) {
-      if (val.length > 0) {
+      if (val && val.length > 0) {
         this.getBranches()
         this.selectedBranches = []
       }
@@ -154,6 +162,22 @@ export default {
     }
   },
   methods: {
+    selectRepo (id) {
+      this.selectedRepo = id
+      let repository = _.find(this.repositories, { id: this.selectedRepo })
+      this.repositoriesSearch = []
+      this.repositories.forEach((element) => {
+        if (element.fullName.includes(repository.fullName) || element.fullName.toLowerCase().includes(repository.fullName.toLowerCase())) {
+          this.repositoriesSearch.push(element)
+        }
+      })
+    },
+    removeRepo () {
+      this.repositoriesSearch = this.repositories
+      this.selectedRepo = null
+      this.searchQuery = ''
+      this.$nextTick(() => this.$refs.search.focus())
+    },
     getBranches () {
       let repository = _.find(this.repositories, { id: this.selectedRepo })
       axiosRequest(this.$store, {
@@ -184,7 +208,6 @@ export default {
         pushBranch['subDomain'] = branch.subDomain
         branches.push(pushBranch)
       })
-      console.log(branches)
       axiosRequest(this.$store, {
         method: 'POST',
         url: '/projects',
@@ -273,10 +296,64 @@ export default {
     max-height: 300px;
     overflow: auto;
   }
+  .box .repos .loading {
+    margin-bottom: 20px;
+    position: relative;
+    margin-left: 74px;
+    border: 4px solid #e8e7e7;
+    border-top: 4px solid #4769ff;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 0.7s linear infinite;
+  }
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
   .box .row {
     display: flex;
     margin-bottom: 15px;
     align-items: center;
+  }
+  .box .row .select {
+    background-color: $blue;
+    float: left;
+    color: white;
+    font-size: 9px;
+    padding: 5px 9px 5px 9px;
+    border-radius: 2px;
+    cursor: pointer;
+    opacity: 0.7;
+  }
+  .box .row.selected{
+    margin-bottom: 0px;
+    .select{
+      opacity: 1;
+    }
+    label {
+      color: $blue;
+    }
+    .remove {
+      cursor: pointer;
+      float: right;
+      font-weight: bold;
+      color: silver;
+    }
+  }
+  .box .row:hover{
+    .select{
+      opacity: 1;
+    }
+    label {
+      color: $blue;
+    }
   }
   .box .row.searchRow {
     margin-bottom: 25px;
