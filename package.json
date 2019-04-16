@@ -1,7 +1,7 @@
 {
   "name": "hostiflix-webapp",
   "version": "1.0.0",
-  "description": "My scrumtrulescent Nuxt.js project",
+  "description": "Hosting made easy.",
   "author": "Rodrigo Orozco",
   "private": true,
   "scripts": {
