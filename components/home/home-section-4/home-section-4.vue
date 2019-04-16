@@ -11,7 +11,7 @@
       <p>
         Hostiflix is the first tool that allows you to deploy your projects directly without previous knowledge.
         The deployment process becomes like a stone falling to the ground (very simple).
-        In addition, Hostiflix provides a live guide that helps beginners to understand the processes in the background and try them out for themselves. 
+        In addition, Hostiflix provides a live guide that helps beginners to understand the processes in the background.
       </p>
       <ul>
         <li data-aos="zoom-out-down" data-aos-delay="400" data-aos-duration="500">
@@ -52,7 +52,7 @@
     margin: 0 auto 60px;
     position: relative;
     z-index: 2;
-    background-image: url("../../../static/img/home/app-logo.png");
+    background-image: url("/img/home/app-logo.png");
     background-repeat: no-repeat;
     background-size: contain;
     height: 100px;
@@ -104,7 +104,7 @@
   .section-4 ul li:before {
     content: '';
     position: absolute;
-    background-image: url("../../../static/img/home/check.png");
+    background-image: url("/img/home/check.png");
     background-repeat: no-repeat;
     background-size: 30px;
     width: 30px;
@@ -116,6 +116,4 @@
   .section-4 .blueBtn {
     max-width: 245px;
   }
-
-
 </style>

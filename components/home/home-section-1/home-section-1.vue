@@ -3,7 +3,7 @@
     <div class="container">
       <div class="txt c-50">
         <h1>
-          Launching <br>apps made easy
+          Hosting <br>made easy
         </h1>
         <h2>
           We enable you to launch any application on a server within seconds, by killing any configuration overhead.
@@ -22,23 +22,20 @@
 </template>
 
 <script>
-  export default {
-    name: 'HomeSection1',
-    components: {
-
-    }
-  }
+export default {
+  name: 'HomeSection1'
+}
 </script>
 
 <style lang="scss">
   /*SECTION 1*/
   .section-1 {
-    padding-bottom: 40px;
-    padding-top: 80px;
     background: #fff;
-  }
-  .section-1 .container {
-    align-items: center;
+    padding: 80px 0;
+
+    .container {
+      align-items: center;
+    }
   }
 
   .section-1 .txt{

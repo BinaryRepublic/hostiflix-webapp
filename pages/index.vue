@@ -47,6 +47,10 @@ export default {
 
     .c-50 {
       width: 50%;
+
+      p {
+        margin-bottom: 5px;
+      }
     }
     .blueBtn {
       border-radius: 5px;

@@ -3,12 +3,11 @@
   <section class="section-3">
     <div class="container">
       <div class="c-50">
-        <p>The approach</p>
-        <h2>Build for the user only</h2>
+        <p>Approach</p>
+        <h2>Built for beginners</h2>
         <p class="padding">
-          During our extensive research process we have noticed that it is especially difficult for beginners to find a solution how to deploy their projects.
-          Hostiflix should help with this approach. Furthermore it should give the beginner the knowledge to become a professional.
-          As a professional you no longer have the time to deal with long-term set-ups, which is why Hostiflix makes this possible in a few seconds.
+          During our extensive research process we have noticed that it is especially difficult for beginners to find a solution to deploy projects.
+          Hostiflix makes it easy to get started and with our Hostiflix Guide you will learn as you use the tool.
         </p>
       </div>
 
@@ -48,7 +47,6 @@
   }
   .section-3 p.padding {
     line-height: 160%;
-    padding-left: 50px;
     max-width: 500px;
   }
   .userComposition {
@@ -58,13 +56,13 @@
 
   }
   .userComposition .element-01 {
-    background-image: url("../../../static/img/home/user/img.png");
+    background-image: url("/img/home/user/img.png");
   }
   .userComposition .element-02 {
-    background-image: url("../../../static/img/home/user/circle.png");
+    background-image: url("/img/home/user/circle.png");
   }
   .userComposition .element-03 {
-    background-image: url("../../../static/img/home/user/half-circle.png");
+    background-image: url("/img/home/user/half-circle.png");
   }
 
 

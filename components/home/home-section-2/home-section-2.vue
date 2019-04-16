@@ -32,15 +32,15 @@
 
 <style lang="scss">
   .section-2 {
-    background-image: url("../../../static/img/home/type-project/background-1920.png");
+    background-image: url("/img/home/type-project/background-1920.png");
     background-position: center 400px ;
     background-repeat: no-repeat;
-    padding-bottom: 150px;
-    background: #fff;
-  }
-  .section-2 .container {
-    display: block !important;
-    text-align: center;
+
+    .container {
+      display: block !important;
+      text-align: center;
+      padding: 0 0 150px 0;
+    }
   }
   .section-2 h2 {
     width: 100%;

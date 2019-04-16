@@ -10,9 +10,3 @@ export default {
   components: { Login }
 }
 </script>
-
-<style lang="scss">
-  body {
-    background: #fff;
-  }
-</style>

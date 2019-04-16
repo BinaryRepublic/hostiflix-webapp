@@ -21,6 +21,11 @@ export default {
     NavLeft,
     Logo
   },
+  head: {
+    bodyAttrs: {
+      class: 'default'
+    }
+  },
   mounted () {
     axiosRequest(this.$store, {
       method: 'GET',
@@ -47,7 +52,7 @@ export default {
 </script>
 
 <style lang="scss">
-  body {
+  body.default {
     background: $blue-lightest;
   }
 </style>
