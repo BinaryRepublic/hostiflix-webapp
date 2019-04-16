@@ -2,7 +2,7 @@
 
   <section class="section-2">
     <div class="container">
-      <h2>Host you application...</h2>
+      <h2>Host your application</h2>
         <tabs>
           <tab name="From GitHub" :selected="true">
             <home-section2-github/>
