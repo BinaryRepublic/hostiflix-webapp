@@ -4,7 +4,7 @@ export const state = () => ({
   auth: null,
   showLogin: false,
   showSelectProjectType: false,
-  projects: []
+  projects: null
 })
 
 export const mutations = {
