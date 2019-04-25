@@ -95,6 +95,7 @@
 
 <script>
 import { axiosRequest } from '../../assets/js/httpHelper'
+import { reloadProjects } from '../../assets/js/projectHelper'
 export default {
   layout: 'createProject',
   data () {
@@ -115,6 +116,14 @@ export default {
   computed: {
     orderBranches () {
       return _.orderBy(this.branches, ['default', 'name'], ['desc', 'asc'])
+    },
+    projects () {
+      return this.$store.state.projects
+    }
+  },
+  fetch ({ store }) {
+    if (store.state.projects === null) {
+      return reloadProjects(store)
     }
   },
   mounted () {
@@ -133,7 +142,9 @@ export default {
       method: 'GET',
       url: '/github/repos'
     }).then(res => {
-      this.repositories = res.data.repos
+      this.repositories = res.data.repos.filter(repo => {
+        return !this.projects.map(project => `${project.repositoryOwner}/${project.repositoryName}`).includes(repo.fullName)
+      })
       this.repositoriesSearch = this.repositories
       this.$nextTick(() => this.$refs.search.focus())
     })
@@ -226,25 +237,7 @@ export default {
         })
       }).then(res => {
         if (res.data.id) {
-          axiosRequest(this.$store, {
-            method: 'GET',
-            url: '/projects'
-          }).then(resD => {
-            let projects = resD.data.projects
-            console.log(projects)
-            projects.forEach((project, pindex) => {
-              if (project.branches) {
-                project.branches.forEach((branch, bindex) => {
-                  if (branch.jobs) {
-                    branch.jobs.forEach((job, jindex) => {
-                      projects[pindex].branches[bindex].jobs[jindex]['branch'] = branch.name
-                      projects[pindex].branches[bindex].jobs[jindex]['subDomain'] = branch.subDomain
-                    })
-                  }
-                })
-              }
-            })
-            this.$store.commit('setProjects', projects)
+          reloadProjects(this.$store).then(() => {
             this.$router.push('/project/' + res.data.id)
           })
         }
