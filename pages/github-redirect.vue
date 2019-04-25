@@ -13,11 +13,6 @@ const Cookie = process.client ? require('js-cookie') : undefined
 
 export default {
   layout: 'home',
-  data () {
-    return {
-      redirect: 0
-    }
-  },
   mounted () {
     if (process.browser) {
       axiosRequest(this.$store, {
@@ -30,29 +25,20 @@ export default {
           const auth = { accessToken }
           this.$store.commit('setAuth', auth)
           Cookie.set('auth', auth)
-          this.redirect = 1
+          this.forward(true)
         } else {
           console.error('authentication failed')
-          this.redirect = 2
+          this.forward(false)
         }
       })
-      setTimeout(() => {
-        this.forward()
-      }, 1600)
     }
   },
   methods: {
-    forward () {
-      if (this.redirect !== 0) {
-        if (this.redirect === 1) {
-          this.$router.push('/dashboard')
-        } else {
-          this.$router.push('/')
-        }
+    forward (authSuccess) {
+      if (authSuccess) {
+        this.$router.push('/dashboard')
       } else {
-        setTimeout(() => {
-          this.redirect()
-        }, 200)
+        this.$router.push('/')
       }
     }
   }
