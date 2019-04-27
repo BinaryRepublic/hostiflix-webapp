@@ -10,7 +10,7 @@
       <div class="row" v-for="branch in branches">
         <div class="col-1">CNAME</div>
         <div class="col-2">example.com</div>
-        <div class="col-3"><span @click="copy(branch.subDomain)" @mouseenter="copyHover" v-tooltip="{ content: copyContent.text, trigger: 'hover click', delay: {hide: copyContent.delay}, hideOnTargetClick: false }">{{branch.subDomain}} <span class="copy"></span></span></div>
+        <div class="col-3"><span @click="copy(branch.subDomain + '.hostiflix.com')" @mouseenter="copyHover" v-tooltip="{ content: copyContent.text, trigger: 'hover click', delay: {hide: copyContent.delay}, hideOnTargetClick: false }">{{branch.subDomain}}.hostiflix.com <span class="copy"></span></span></div>
       </div>
       <div class="row" v-if="!branches">
         <div class="col-0">There are no branches yet.</div>

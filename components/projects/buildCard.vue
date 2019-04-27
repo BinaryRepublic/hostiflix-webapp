@@ -14,8 +14,11 @@
         <div class="col-0" v-if="job.status === 'DEPLOYMENT_SUCCESSFUL'"><span class="green"></span>Launched</div>
         <div class="col-0" v-if="job.status === 'DEPLOYMENT_FAILED'"><span class="red"></span>Deployment failed</div>
         <div class="col-1">{{job.branch}}</div>
-        <div class="col-2"><timeago :datetime="job.finishedAt" :auto-update="1"></timeago></div>
-        <div class="col-3"><a :href="'https://' + job.subDomain" target="_blank">{{removeHTTP(job.subDomain)}}</a></div>
+        <div class="col-2">
+          <timeago :datetime="job.finishedAt" :auto-update="1" v-if="job.finishedAt"></timeago>
+          <timeago :datetime="job.createdAt" :auto-update="1" v-if="!job.finishedAt"></timeago>
+        </div>
+        <div class="col-3"><a :href="'https://' + job.subDomain + '.hostiflix.com'" target="_blank">{{removeHTTP(job.subDomain)}}.hostiflix.com</a></div>
       </div>
       <div class="row" v-if="jobs.length === 0">
         <div class="col-0">There are no jobs yet.</div>
@@ -33,25 +36,29 @@ export default {
   props: {
     builds: Array
   },
+  watch: {
+    builds:  function(newVal, oldVal) { // watch it
+      console.log('Prop changed: ', newVal, ' | was: ', oldVal)
+    }
+  },
   computed: {
     orderdJobs () {
+      this.jobs = []
+      if (this.builds && this.builds.length > 0) {
+        this.builds.forEach((element, index) => {
+          if (element.jobs) {
+            element.jobs.forEach((job, index) => {
+              this.jobs.push(job)
+            })
+          }
+        })
+      }
       return _.orderBy(this.jobs, ['finishedAt'], ['desc'])
     }
   },
   data () {
     return {
       jobs: []
-    }
-  },
-  mounted () {
-    if (this.builds) {
-      this.builds.forEach((element, index) => {
-        if (element.jobs) {
-          element.jobs.forEach((job, index) => {
-            this.jobs.push(job)
-          })
-        }
-      })
     }
   },
   methods: {

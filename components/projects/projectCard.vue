@@ -8,8 +8,11 @@
       </div>
       <div class="row" v-for="job in orderdJobs" :key="job.id">
         <div class="col-1">{{job.branch}}</div>
-        <div class="col-2"><timeago :datetime="job.finishedAt" :auto-update="1"></timeago></div>
-        <div class="col-3"><a :href="job.subDomain" target="_blank">{{removeHTTP(job.subDomain)}}</a></div>
+        <div class="col-2">
+          <timeago :datetime="job.finishedAt" :auto-update="1" v-if="job.finishedAt"></timeago>
+          <timeago :datetime="job.createdAt" :auto-update="1" v-if="!job.finishedAt"></timeago>
+        </div>
+        <div class="col-3"><a :href="'https://'+ job.subDomain + '.hostiflix.com'" target="_blank">{{removeHTTP(job.subDomain)}}.hostiflix.com</a></div>
       </div>
       <div class="row" v-if="jobs.length === 0">
         <div class="col-1">There are no jobs yet.</div>

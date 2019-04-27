@@ -4,7 +4,7 @@
     <!--PROJECTS-->
     <div class="title">
       <h2 data-aos="fade-left" data-aos-duration="600">{{project.name}}</h2>
-      <h5 data-aos="fade-left" data-aos-delay="50" data-aos-duration="600">Last updated 13 seconds ago</h5>
+      <h5 data-aos="fade-left" data-aos-delay="50" data-aos-duration="600">Created <timeago :datetime="project.createdAt" :auto-update="1"></timeago> ago</h5>
     </div>
     <div class="projectCards">
       <h3 data-aos="fade-up">Recent Builds</h3>
@@ -29,9 +29,14 @@ export default {
     BuildCard,
     DnsCard
   },
+  data () {
+    return {
+      branches: {}
+    }
+  },
   computed: {
     project () {
-      return _.find(this.$store.state.projects, { id: this.$route.params.id })
+      return _.find(this.$store.state.data.projects, { id: this.$route.params.id })
     }
   }
 }

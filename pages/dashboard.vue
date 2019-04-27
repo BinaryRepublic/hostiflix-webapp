@@ -5,8 +5,8 @@
       <h2 data-aos="fade-left" data-aos-duration="600">My projects</h2>
       <h5 data-aos="fade-left" data-aos-delay="50" data-aos-duration="600">These are all of your projects running on hostiflix.</h5>
     </div>
-    <div class="projectCards" v-if="this.$store.state.projects">
-      <project-card data-aos="fade-up" v-for="project in this.$store.state.projects" :project="project" :key="project.id"/>
+    <div class="projectCards" v-if="this.$store.state.data.projects">
+      <project-card data-aos="fade-up" v-for="project in sortProjects" :project="project" :key="project.id"/>
       <project-create-card data-aos="fade-up" data-aos-delay="50" @click.native="$store.commit('showSelectProjectType')"></project-create-card>
     </div>
   </section>
@@ -21,6 +21,11 @@ export default {
   components: {
     ProjectCreateCard,
     ProjectCard
+  },
+  computed: {
+    sortProjects () {
+      return _.orderBy(this.$store.state.data.projects, ['createdAt'], ['desc'])
+    }
   },
   data () {
     return {

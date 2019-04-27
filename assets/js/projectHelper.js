@@ -1,4 +1,4 @@
-import { axiosRequest } from './httpHelper';
+import { axiosRequest } from './httpHelper'
 
 export const reloadProjects = (store) => {
   return new Promise(resolve => {
@@ -8,6 +8,7 @@ export const reloadProjects = (store) => {
     }).then(res => {
       let projects = res.data.projects
       projects.forEach((project, pindex) => {
+        project.name = project.name
         if (project.branches) {
           project.branches.forEach((branch, bindex) => {
             if (branch.jobs) {

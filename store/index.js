@@ -1,10 +1,12 @@
-const cookieParser = process.server ? require('cookieparser') : undefined;
+const cookieParser = process.server ? require('cookieparser') : undefined
 
 export const state = () => ({
   auth: null,
   showLogin: false,
   showSelectProjectType: false,
-  projects: null
+  data: {
+    projects: {}
+  }
 })
 
 export const mutations = {
@@ -18,13 +20,13 @@ export const mutations = {
     state.showSelectProjectType = false
   },
   setProjects (state, projects) {
-    state.projects = projects
+    state.data.projects = projects
   }
-};
+}
 
 export const actions = {
   nuxtServerInit ({ commit }, { req }) {
-    let auth = null;
+    let auth = null
     if (req.headers.cookie) {
       const parsed = cookieParser.parse(req.headers.cookie)
       try {
@@ -36,4 +38,4 @@ export const actions = {
     }
     commit('setAuth', auth)
   }
-};
+}

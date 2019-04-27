@@ -12,7 +12,7 @@ import Logo from '../components/_shared/logo'
 import NavLeft from '../components/_shared/navLeft'
 import ProfileButton from '../components/_shared/profileButton'
 import SelectProjectType from '../components/_shared/selectProjectType/selectProjectType'
-import { reloadProjects } from '../assets/js/projectHelper';
+import { reloadProjects } from '../assets/js/projectHelper'
 
 export default {
   components: {
@@ -28,6 +28,9 @@ export default {
   },
   mounted () {
     reloadProjects(this.$store)
+    setInterval(() => {
+      reloadProjects(this.$store)
+    }, 10000)
   }
 }
 </script>

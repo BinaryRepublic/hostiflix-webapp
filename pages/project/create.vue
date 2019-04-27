@@ -118,11 +118,11 @@ export default {
       return _.orderBy(this.branches, ['default', 'name'], ['desc', 'asc'])
     },
     projects () {
-      return this.$store.state.projects
+      return this.$store.state.data.projects
     }
   },
   fetch ({ store }) {
-    if (store.state.projects === null) {
+    if (store.state.data.projects === null) {
       return reloadProjects(store)
     }
   },
@@ -204,7 +204,7 @@ export default {
           } else {
             branches[index]['default'] = 0
           }
-          branches[index]['subDomain'] = this.friendlyUrl(element.name) + '.' + this.projectHash
+          branches[index]['subDomain'] = this.friendlyUrl(element.name) + '-' + this.projectHash
         })
         this.branches = branches
       })
@@ -238,7 +238,7 @@ export default {
       }).then(res => {
         if (res.data.id) {
           reloadProjects(this.$store).then(() => {
-            this.$router.push('/project/' + res.data.id)
+            location.replace('../project/' + res.data.id)
           })
         }
       })

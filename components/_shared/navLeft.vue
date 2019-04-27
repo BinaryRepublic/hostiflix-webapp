@@ -3,7 +3,7 @@
     <div class="projectsList">
       <h4><nuxt-link to="dashboard">My Projects</nuxt-link></h4>
       <ul>
-        <li v-for="project in $store.state.projects" :key="project.id">
+        <li v-for="project in $store.state.data.projects" :key="project.id">
           <nuxt-link :to="'/project/' + project.id">{{project.name}}</nuxt-link>
         </li>
         <li>
