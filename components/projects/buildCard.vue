@@ -4,7 +4,7 @@
       <div class="row titleTable">
         <div class="col-0">Status</div>
         <div class="col-1">Branch</div>
-        <div class="col-2">Updated</div>
+        <div class="col-2">Finished</div>
         <div class="col-3 ">Domain</div>
       </div>
       <div class="row" v-for="job in orderdJobs" :v-key="job.id">
@@ -16,7 +16,7 @@
         <div class="col-1">{{job.branch}}</div>
         <div class="col-2">
           <timeago :datetime="job.finishedAt" :auto-update="1" v-if="job.finishedAt"></timeago>
-          <timeago :datetime="job.createdAt" :auto-update="1" v-if="!job.finishedAt"></timeago>
+          <div v-if="!job.finishedAt">-</div>
         </div>
         <div class="col-3"><a :href="'https://' + job.subDomain + '.hostiflix.com'" target="_blank">{{removeHTTP(job.subDomain)}}.hostiflix.com</a></div>
       </div>
