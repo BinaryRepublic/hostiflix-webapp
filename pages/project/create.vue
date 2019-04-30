@@ -229,7 +229,7 @@ export default {
           hash: this.projectHash,
           name: repository.fullName.split('/')[1],
           type: 'NODEJS',
-          buildCode: 'npm install',
+          buildCode: 'npm install && npm run build',
           startCode: 'npm run start',
           repositoryOwner: repository.owner,
           repositoryName: repository.fullName.split('/')[1],
